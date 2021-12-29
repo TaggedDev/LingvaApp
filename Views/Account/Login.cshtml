@@ -1,0 +1,43 @@
+﻿@model LingvaApp.ViewModels.LoginViewModel
+
+@{
+    Layout = null;
+    string errors = ViewBag.ErrorMessage;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../css/Registration/auth_window.css" asp-append-version="true">
+    <title> Lingva: Create Account</title>
+</head>
+<body>
+    <div class="auth">
+        <form method="post" class="window" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+            <h2 class="main">Вход</h2>
+            <p class="enter_link">Впервые в Lingva? <a href="~/Account/Register">Создать аккаунт!</a></p>
+            <div asp-validation-summary="ModelOnly"></div>
+            <div class="field">
+                <label class="field__label" asp-for="Email"></label><br />
+                <input class="field__data" asp-for="Email" />
+            </div>
+            <div class="field">
+                <label class="field__label" asp-for="Password"></label><br />
+                <input class="field__data" asp-for="Password" />
+            </div>
+            <div class="field remember_me">
+                <label class="field__label" asp-for="RememberMe"></label><br />
+                <input class="field_checkbox" asp-for="RememberMe" />
+            </div>
+            <div class="button__field">
+                <input class="button__push button" type="submit" value="ВОЙТИ" />
+            </div>
+            <div class="errors">
+                <div><span asp-validation-for="Email"></span></div>
+                <div><span asp-validation-for="Password"></span></div>
+                @errors
+            </div>
+        </form>
+    </div>
+</body>
+</html>

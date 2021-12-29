@@ -1,0 +1,61 @@
+.levels {
+    padding-top: 84px;
+    padding-left: 10vh;
+    display: flex;
+    cursor: grab;
+}
+
+.level {
+    margin-right: 200px;
+    
+}
+
+.level h1 {
+    padding-top: 30px;
+    padding-bottom: 10px;
+    font-weight: 300;
+    color: #dedede;
+
+}
+
+.level_content {
+    border-top: 2px solid #dedede;
+    display: inline-block;
+}
+
+.level_inner {
+    display: flex;
+    height: 80vh;
+}
+
+.column {
+    margin-right: 100px;
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-around;
+}
+
+.lesson {
+    margin-top: 20px;
+    display: grid;
+}
+
+.lesson button {
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.lesson__img {  
+    width: 70px;
+    height: 70px;
+}
+
+.lesson_theme {
+    padding-top: 5px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    color: #292929;
+}
+

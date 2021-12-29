@@ -1,0 +1,78 @@
+body {
+    background-color: #F5F5F5;
+}
+
+.container {
+    margin-top: 60px;
+    margin-right: 25%;
+    margin-left: 25%;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 100%;
+}
+
+.field_container {
+    margin-top: 48px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea {
+    padding: 5px 2px 5px 2px;
+    resize: vertical;
+    font-size: 16px;
+    height: 72px;
+}
+
+label {
+    float: left;
+}
+
+input {
+    padding: 5px 2px 5px 2px;
+    font-size: 16px;
+}
+
+.field_item {
+    width: 100%;
+}
+
+.primary {
+    font-size: 32px;
+}
+
+.secondary {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.input_field {
+    width: 100%;   
+}
+
+.button_container {
+    margin-top: 44px;
+    margin-bottom: 10px;
+}
+
+.save_field_btn {
+    padding: 16px 20px 16px 20px;
+    font-size: 24px;
+    text-transform: uppercase;
+    float: right;
+}
+
+.navigation_button {
+    width: 200px;
+    height: 64px;
+    font-size: 24px;
+}

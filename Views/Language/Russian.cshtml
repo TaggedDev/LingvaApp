@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lingva: Русский</title>
+    <link rel="stylesheet" href="../../css/language/lang.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+    @await Html.PartialAsync("_CssHeaderPartial")
+    @await Html.PartialAsync("_CssLanguagePartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class="levels">
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "A1" } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "A2" } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "B1" } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "B2" } })
+    </div>
+</body>
+</html>

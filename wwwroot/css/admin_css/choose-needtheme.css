@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,700;1,300;1,700&display=swap');
+
+body{
+    background-color: #dbdbdb;
+}
+.nomer-temi{
+    font-size: 40px;
+    margin-top: 175px;
+    margin-left: 300px;
+    padding: 0;
+}
+
+.container
+{
+    display: flex;
+    flex-direction: column;
+}
+
+table {
+    background-color: #ffffff;
+    font-size: 30px;
+    margin: 70px auto;
+    width: 1200px;
+    border-collapse: collapse;
+}
+
+td {
+    font-size: 25px;
+}
+td, th {
+    font-weight: normal;
+    border: 1px solid #000000;
+    text-align: left;
+    padding: 8px;
+}
+
+.new-lessonout {
+    width: 220px;
+    height: 50px;
+    margin: auto auto;
+    border: 1px solid #000000;
+}
+
+.new-lesson {
+    background-color: #ffffff;
+    font-size: 25px;
+    margin: 30px auto;
+    padding: 10px;
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+    color: black;
+}
+
+.scrollable {
+    height: 500px; /* or any value */
+    overflow-y: auto;
+}

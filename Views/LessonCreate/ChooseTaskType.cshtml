@@ -1,0 +1,36 @@
+﻿@model LingvaApp.Models.Task
+@{
+    Layout = null;
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/admin_css/choose-tasktype.css" asp-append-version="true">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @await Html.PartialAsync("_CssHeaderPartial")
+    <link rel="stylesheet" href="../css/base.css" asp-append-version="true">
+    <title>Choose Task Type</title>
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <h1 class="title">ВЫБЕРИТЕ ЯЗЫК:</h1>
+    <div class="container">
+        <form method="post" asp-controller="LessonCreate" asp-action="ChooseTaskTypePost">
+            @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
+            @Html.HiddenFor(m => m.LessonParentID, Model.LessonParentID)
+            @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
+            <div class="container__items">
+                Fill @Html.RadioButtonFor(type => type.TaskType, "fill")
+                Trans @Html.RadioButtonFor(type => type.TaskType, "trans")
+                Match @Html.RadioButtonFor(type => type.TaskType, "match")
+            </div>
+            <input type="submit" name="submit" />
+        </form>
+    </div>
+</body>
+</html>

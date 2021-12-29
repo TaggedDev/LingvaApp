@@ -1,0 +1,42 @@
+﻿@{ Layout = null; }
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @await Html.PartialAsync("_CssHeaderPartial")
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/admin_css/edit_task_fields.css">
+    <title>Document</title>
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class="container">
+        <h1 class="title">РЕДАКТИРОВАНИЕ ЗАДАНИЯ</h1>
+        <form action="" class="form">
+            <div class="field_container">
+                <label class="field_item primary" for="">Текст</label>
+                <textarea class="input_field" type="text" name="" id=""></textarea>
+                <label class="field_item secondary" for="">Правильный ответ</label>
+                <input class="input_field" type="text" name="" id="">
+                <div class="button_container field_item">
+                    <button class="save_field_btn">Сохранить</button>
+                </div>
+            </div>
+        </form>
+        <div class="navigation_buttons">
+            <button class="navigation_button">ДОБАВИТЬ</button>
+            <button class="navigation_button">НАЗАД</button>
+        </div>
+    </div>
+    <script>
+        let div = document.createElement('div');
+        div.className = "msg";
+        div.innerHTML = "Important";
+
+        document.body.append(div);
+    </script>
+</body>
+</html>

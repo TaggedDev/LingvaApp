@@ -1,0 +1,15 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - web4</title>
+    <link rel="stylesheet" href="css/base.css" asp-append-version="true">
+    @await Html.PartialAsync("_CssHeaderPartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    @RenderBody()
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

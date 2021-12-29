@@ -1,0 +1,32 @@
+﻿@model LingvaApp.Models.Task
+@{Layout = null;}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @await Html.PartialAsync("_CssHeaderPartial")
+    <link rel="stylesheet" href="../css/base.css" asp-append-version="true" />
+    <link rel="stylesheet" href="../css/admin_css/edit_task.css">
+    <title>Document</title>
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class="container">
+        <h1 class="title">РЕДАКТИРОВАНИЕ ЗАДАНИЯ</h1>
+        <form method="post" class="form" asp-controller="LessonCreate" asp-action="EditTaskPost">
+            <div class="textarea_container">
+                @Html.TextAreaFor(m => m.TextFieldContent, new { @class = "textarea" })
+            </div>
+            <input class="save_text_btn" type="submit" name="СОХРАНИТЬ ТЕКСТ" />
+        </form>
+        <div class="bottom_block">
+            <h2 class="subtitle">Количество заданий в уроке: $</h2>
+            <button class="edit_fields_btn">Редактировать</button>
+        </div>
+    </div>
+
+</body>
+</html>

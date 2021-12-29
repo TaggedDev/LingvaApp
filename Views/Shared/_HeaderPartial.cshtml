@@ -1,0 +1,32 @@
+﻿<header class="header">
+    <nav class="navbar">
+        <div class="navbar__item"><a href="~/Intro/Index" class="navbar__content"><span class="navbar__underline">LINGVA</span></a></div>
+        <div class="navbar__item navbar__hub">
+            <ul>
+                <li><a href="~/Learn" class="navbar__content"><span class="navbar__underline">ЯЗЫКИ</span></a></li>
+                <li><a href="#" class="navbar__content"><span class="navbar__underline">ОНЛАЙН-ЧАТ</span></a></li>
+                <li><a href="#" class="navbar__content"><span class="navbar__underline">СЛОВАРЬ</span></a></li>
+            </ul>
+        </div>
+        <div class="navbar__item">
+            @{
+                if (User.Identity.IsAuthenticated)
+                {
+                    <a class="navbar__item__profile" href="~/Account/Check">
+                        <img class="navbar__profile__avatar" src="../../assets/gramm.png" alt="pfp">
+                        <span class="navbar__profile__username">@User.Identity.Name</span>
+                    </a>
+                }
+                else
+                {
+                    <a class="navbar__item__profile" href="~/Account/Register">
+                        <img class="navbar__profile__avatar" src="../../assets/gramm.png" alt="pfp">
+                        <span class="navbar__profile__username">ПРОФИЛЬ</span>
+                    </a>
+                }
+            }
+
+        </div>
+
+    </nav>
+</header>

@@ -1,0 +1,17 @@
+﻿@{
+    Layout = null;
+}
+
+<html>
+<head lang="ru">
+    <meta name="viewport" content="width=device-width" />
+    <title>Lingva: Learn</title>
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+    @await Html.PartialAsync("_CssHeaderPartial")
+    @await Html.PartialAsync("_CssLearnPartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    @await Html.PartialAsync("_LearnBody")
+</body>
+</html>

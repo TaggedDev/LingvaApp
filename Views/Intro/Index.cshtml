@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ligva: Learn Languages</title>
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/footer.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/Intro/features.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/Intro/welcome.css" asp-append-version="true">
+    @await Html.PartialAsync("_CssHeaderPartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+
+    <!-- header part ends, starts intro part -->
+
+    <div class="intro">
+        <div class="intro__content">
+            <img class="intro__logo" src="../../assets/LOGO2_wv.svg" alt="lingva_logo">
+            <div class="intro__centered">
+                <h3 class="intro__description intro__text">Удобный инструмент для изучения языков</h3>
+                <button class="button intro__button">НАЧАТЬ</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- welcome part ends, starts features part -->
+
+    <div class="features">
+        <ul>
+            <li class="feature_item">
+                <div class="feature">
+                    <div class="feature-overlay"><img src="../../assets/gramm.png" alt="Grammar"></div>
+                    <h2 class="feature__heading">ГРАММАТИКА</h2>
+                    <h4 class="feature__description">Изучай и практикуй новый язык в упражнениях и следи за прогрессом в личном кабинете</h4>
+                </div>
+            </li>
+            <li class="feature_item">
+                <div class="feature">
+                    <img src="../../assets/vocab.png" alt="Vocabulary">
+                    <h2 class="feature__heading">СЛОВАРЬ</h2>
+                    <h4 class="feature__description">Сохраняй неизвестные слова с удобным встроенным словарем и повторяй их</h4>
+                </div>
+            </li>
+            <li class="feature_item">
+                <div class="feature">
+                    <img src="../../assets/chat.png" alt="Chat">
+                    <h2 class="feature__heading">ОНЛАЙН-ЧАТ</h2>
+                    <h4 class="feature__description">Куй железо пока горячо! Закрепляй пройденный материал в онлайн-чате</h4>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- features part ends, starts footer part -->
+
+    @await Html.PartialAsync("_Footer")
+</body>
+</html>
