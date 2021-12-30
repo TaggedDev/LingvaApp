@@ -1,4 +1,4 @@
-﻿@model LingvaApp.Models.Theme
+﻿@model LingvaApp.ViewModels.TaskTheme
 @{ Layout = null; }
 
 <!DOCTYPE html>
@@ -16,8 +16,9 @@
     @await Html.PartialAsync("_HeaderPartial")
     <div class="container">
         <h1>ВВЕДИТЕ НАЗВАНИЕ НОВОЙ ТЕМЫ ДЛЯ {language}</h1>
-        <form class="form" method="post" asp-controller="LessonCreate" asp-action="ChooseTaskTypePost">
-            @Html.TextBoxFor(m => m.ThemeTopic)
+        <form class="form" method="post" asp-controller="LessonCreate" asp-action="NewThemePost">
+            @Html.HiddenFor(m => m.Task.LanguageParent, Model.Task.LanguageParent)
+            @Html.TextBoxFor(m => m.Theme.ThemeTopic)
             <input type="submit" name="ДАЛЕЕ" />
         </form>
     </div>
