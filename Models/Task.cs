@@ -1,10 +1,12 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace LingvaApp.Models
 {
     public class Task
     {
-        public ulong TaskID { get; set; }
+        [Key]
+        public int TaskID { get; set; }
         public string LanguageParent { get; set; }
         public int LessonParentID { get; set; }
         public int ThemeParentID { get; set; }
