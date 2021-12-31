@@ -1,0 +1,37 @@
+﻿@model LingvaApp.Models.Task
+@{
+    Layout = null;
+    List<LingvaApp.Models.Task> tasks = ViewBag.tasks;
+
+    List<int> ints = new List<int>();
+    foreach (LingvaApp.Models.Task task in tasks)
+        ints.Add(task.TaskID);
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/admin_css/choose-task.css" asp-append-version="true">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @await Html.PartialAsync("_CssHeaderPartial")
+    <link rel="stylesheet" href="../css/base.css" asp-append-version="true">
+    <title>Choose Task</title>
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class="container">
+        <div class="select_task_type">SELECT TASK TYPE:</div>
+        <div class="main">
+            <form method="post" asp-controller="LessonCreate" asp-action="ChooseTaskPost">
+                @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
+                @Html.HiddenFor(m => m.LessonParentID, Model.LessonParentID)
+                @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
+                @Html.DropDownListFor(m => m.TaskID, new SelectList(ints), "Выберите задание:")
+                <input type="submit" name="Далее" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

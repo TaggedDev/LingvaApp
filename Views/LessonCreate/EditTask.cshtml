@@ -17,6 +17,11 @@
     <div class="container">
         <h1 class="title">РЕДАКТИРОВАНИЕ ЗАДАНИЯ</h1>
         <form method="post" class="form" asp-controller="LessonCreate" asp-action="EditTaskPost">
+            @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
+            @Html.HiddenFor(m => m.LessonParentID, Model.LessonParentID)
+            @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
+            @Html.HiddenFor(m => m.TaskID, Model.TaskID)
+            @Html.HiddenFor(m => m.TaskType, Model.TaskType)
             <div class="textarea_container">
                 @Html.TextAreaFor(m => m.TextFieldContent, new { @class = "textarea" })
             </div>

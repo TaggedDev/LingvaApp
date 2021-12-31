@@ -26,7 +26,7 @@
             @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
             <div class="container__items">
                 Fill @Html.RadioButtonFor(type => type.TaskType, "fill")
-                Trans @Html.RadioButtonFor(type => type.TaskType, "trans")
+                Trans @Html.RadioButtonFor(type => type.TaskType, "translate")
                 Match @Html.RadioButtonFor(type => type.TaskType, "match")
             </div>
             <input type="submit" name="submit" />

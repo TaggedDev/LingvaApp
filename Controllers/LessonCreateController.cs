@@ -2,6 +2,7 @@
 using LingvaApp.Models;
 using LingvaApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,7 +107,36 @@ namespace LingvaApp.Controllers
             }
             else
             {
+                return RedirectToAction("ChooseTask", model);
+            }
+        }
+
+        /// <summary>
+        /// Четвертое поле, вызывается после выбора "Урока" для выбора задания. Т.е. ред. существующего или создания нового
+        /// </summary>
+        public IActionResult ChooseTask(Task model)
+        {
+            var tasks = _dbContext.Tasks.Where(x => (x.ThemeParentID == model.ThemeParentID) && (x.LessonParentID == model.ThemeParentID)).ToList();
+            ViewBag.tasks = tasks;
+            return View(model);
+        }
+        
+        /// <summary>
+        /// Вызывается по выбору задания, 0 = новое задание
+        /// </summary>
+        [HttpPost("ChooseTask")]
+        public IActionResult ChooseTaskPost(Task model)
+        {
+            if (model.TaskID == 0)
+            {
+                // Redirect to task type selection page
                 return RedirectToAction("ChooseTaskType", model);
+            }
+            else
+            {
+                // Edit existing task
+                model.TaskType = _dbContext.Tasks.Where(x => x.TaskID == model.TaskID).FirstOrDefault().TaskType;
+                return RedirectToAction("EditTask", model);
             }
         }
 
@@ -121,9 +151,12 @@ namespace LingvaApp.Controllers
         /// </summary>
         /// <param name="model">Модель с заполненным полем LessonType</param>
         [HttpPost("ChooseTaskType")]
-        public IActionResult ChooseTaskTypePost(Task model)
+        public async System.Threading.Tasks.Task<IActionResult> ChooseTaskTypePostAsync(Task model)
         {
             // Add to db and then redirect
+            model.CreationTimestamp = DateTime.Now;
+            _dbContext.Tasks.Add(model);
+            await _dbContext.SaveChangesAsync();
             return RedirectToAction("EditTask", model);
         }
 
@@ -132,14 +165,15 @@ namespace LingvaApp.Controllers
         /// </summary>
         public IActionResult EditTask(Task model) => View(model);
         
-
         /// <summary>
         /// Вызывается при отправке формы. Должна отредактировать сохраненное текстовое поле
         /// </summary>
         [HttpPost("EditTask")]
-        public IActionResult EditTaskPost(Task model)
+        public async System.Threading.Tasks.Task<IActionResult> EditTaskPostAsync(Task model)
         {
-            return View();
+            _dbContext.Entry(model).State = EntityState.Modified;
+            await _dbContext.SaveChangesAsync();
+            return View("EditTask", model);
         }
 
         /// <summary>
@@ -152,13 +186,13 @@ namespace LingvaApp.Controllers
         /// Вызывается по нажатии кнопки "сохранить" в поле для ответов к задаче у задания
         /// </summary>
         [HttpPost("EditTaskFields")]
-        public IActionResult EditTaskFieldsPost(Task model) { return View(); }
+        public IActionResult EditTaskFieldsPost(Task model) { return View("EditTaskFields"); }
 
         /// <summary>
         /// Открывает страницу с полем ввода названия темы. 
         /// Вызывается по нажатии кнопки "Новая тема" в LessonCreate/ChooseTheme
         /// </summary>
-        public IActionResult NewTheme(TaskTheme model) => View();
+            public IActionResult NewTheme(TaskTheme model) => View();
 
         /// <summary>
         /// Вызывается по нажатию кнопки "далее" после ввода названия урока
