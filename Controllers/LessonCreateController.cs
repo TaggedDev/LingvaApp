@@ -4,6 +4,7 @@ using LingvaApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace LingvaApp.Controllers
 {
@@ -55,8 +56,8 @@ namespace LingvaApp.Controllers
         /// </summary>
         public IActionResult ChooseTheme(Task model)
         {
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
-            ViewBag.IDs = numbers;
+            var themes = _dbContext.Themes.Where(x => x.LanguageParent == model.LanguageParent).ToList();
+            ViewBag.themes = themes;
             return View(model);
         }
 
@@ -68,7 +69,7 @@ namespace LingvaApp.Controllers
         public IActionResult ChooseThemePost(Task model)
         {
             // Add to db and then redirect
-            if (model.LessonParentID == 0)
+            if (model.ThemeParentID == 0)
             {
                 TaskTheme newModel = new TaskTheme() { Task = model, Theme = new Theme() };
                 return View("NewTheme", newModel);
@@ -85,8 +86,8 @@ namespace LingvaApp.Controllers
         /// </summary>
         public IActionResult ChooseLesson(Task model)
         {
-            List<int> numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
-            ViewBag.IDs = numbers;
+            var lessons = _dbContext.Lessons.Where(x => x.ThemeParentID == model.ThemeParentID).ToList();
+            ViewBag.lessons = lessons;
             return View(model);
         }
 

@@ -1,7 +1,11 @@
 ﻿@model LingvaApp.Models.Task
 @{
     Layout = null;
-    List<int> IDs = ViewBag.IDs;
+    List<Lesson> lessons = ViewBag.lessons;
+
+    List<int> ints = new List<int>();
+    foreach (Lesson lesson in lessons)
+        ints.Add(lesson.LessonID);
 }
 
 <!DOCTYPE html>
@@ -23,7 +27,7 @@
             <form method="post" asp-controller="LessonCreate" asp-action="ChooseLessonPost">
                 @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
                 @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
-                @Html.DropDownListFor(m => m.LessonParentID, new SelectList(IDs), "Выберите урок:")
+                @Html.DropDownListFor(m => m.LessonParentID, new SelectList(ints), "Выберите урок:")
                 <input type="submit" name="Далее" />
             </form>
         </div>
