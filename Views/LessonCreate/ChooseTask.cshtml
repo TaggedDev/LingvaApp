@@ -26,7 +26,6 @@
         <div class="main">
             <form method="post" asp-controller="LessonCreate" asp-action="ChooseTaskPost">
                 @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
-                @Html.HiddenFor(m => m.LessonParentID, Model.LessonParentID)
                 @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
                 @Html.DropDownListFor(m => m.TaskID, new SelectList(ints), "Выберите задание:")
                 <input type="submit" name="Далее" />

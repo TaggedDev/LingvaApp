@@ -1,4 +1,5 @@
-﻿@{ Layout = null; }
+﻿@model LingvaApp.ViewModels.TaskFields
+@{ Layout = null; }
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,14 +16,20 @@
     @await Html.PartialAsync("_HeaderPartial")
     <div class="container">
         <h1 class="title">РЕДАКТИРОВАНИЕ ЗАДАНИЯ</h1>
-        <form action="" class="form">
+        <form class="form" method="post" asp-controller="LessonCreate" asp-action="EditTaskFieldsPost">
             <div class="field_container">
-                <label class="field_item primary" for="">Текст</label>
-                <textarea class="input_field" type="text" name="" id=""></textarea>
-                <label class="field_item secondary" for="">Правильный ответ</label>
-                <input class="input_field" type="text" name="" id="">
+                @Html.HiddenFor(m => m.Task.LanguageParent, Model.Task.LanguageParent)
+                @Html.HiddenFor(m => m.Task.TaskID, Model.Task.TaskID)
+                @Html.HiddenFor(m => m.Task.ThemeParentID, Model.Task.ThemeParentID)
+                @Html.HiddenFor(m => m.Task.TaskType, Model.Task.TaskType)
+                @Html.HiddenFor(m => m.Task.TextFieldContent, Model.Task.TextFieldContent)
+                <label class="field_item primary" asp-for="Field.TaskContent">Текст</label>
+                <textarea class="input_field" type="text" asp-for="Field.TaskContent"></textarea>
+                <label class="field_item secondary" asp-for="Field.AnswersAliases">Правильный ответ</label>
+                <input class="input_field" type="text" asp-for="Field.AnswersAliases">
                 <div class="button_container field_item">
-                    <button class="save_field_btn">Сохранить</button>
+                    <input type="submit" class="save_field_btn" value="Далее" />
+                    @*<button >Сохранить</button>*@
                 </div>
             </div>
         </form>
@@ -31,12 +38,12 @@
             <button class="navigation_button">НАЗАД</button>
         </div>
     </div>
-    <script>
+    @*<script>
         let div = document.createElement('div');
         div.className = "msg";
         div.innerHTML = "Important";
 
         document.body.append(div);
-    </script>
+    </script>*@
 </body>
 </html>

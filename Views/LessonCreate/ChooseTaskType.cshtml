@@ -22,7 +22,6 @@
     <div class="container">
         <form method="post" asp-controller="LessonCreate" asp-action="ChooseTaskTypePost">
             @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
-            @Html.HiddenFor(m => m.LessonParentID, Model.LessonParentID)
             @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
             <div class="container__items">
                 Fill @Html.RadioButtonFor(type => type.TaskType, "fill")

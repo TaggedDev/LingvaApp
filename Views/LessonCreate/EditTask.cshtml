@@ -18,20 +18,25 @@
         <h1 class="title">РЕДАКТИРОВАНИЕ ЗАДАНИЯ</h1>
         <form method="post" class="form" asp-controller="LessonCreate" asp-action="EditTaskPost">
             @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
-            @Html.HiddenFor(m => m.LessonParentID, Model.LessonParentID)
             @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
             @Html.HiddenFor(m => m.TaskID, Model.TaskID)
             @Html.HiddenFor(m => m.TaskType, Model.TaskType)
             <div class="textarea_container">
                 @Html.TextAreaFor(m => m.TextFieldContent, new { @class = "textarea" })
             </div>
-            <input class="save_text_btn" type="submit" name="СОХРАНИТЬ ТЕКСТ" />
+            <input class="save_text_btn" type="submit" value="СОХРАНИТЬ ТЕКСТ" />
         </form>
         <div class="bottom_block">
             <h2 class="subtitle">Количество заданий в уроке: $</h2>
-            <button class="edit_fields_btn">Редактировать</button>
-        </div>
+            <form method="post" class="form" asp-controller="LessonCreate" asp-action="EditTaskFields">
+                @Html.HiddenFor(m => m.LanguageParent, Model.LanguageParent)
+                @Html.HiddenFor(m => m.ThemeParentID, Model.ThemeParentID)
+                @Html.HiddenFor(m => m.TaskID, Model.TaskID)
+                @Html.HiddenFor(m => m.TaskType, Model.TaskType)
+                @Html.HiddenFor(m => m.TextFieldContent, Model.TextFieldContent)
+                <input type="submit" class="edit_fields_btn" value="РЕДАКТИРОВАТЬ" />
+            </form>
+</div>
     </div>
-
 </body>
 </html>

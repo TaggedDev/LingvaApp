@@ -2,9 +2,9 @@
 
 namespace LingvaApp.ViewModels
 {
-    public class TaskLesson
+    public class TaskFields
     {
         public Task Task { get; set; }
-        public Lesson Lesson { get; set; }
+        public Field Field { get; set; }
     }
 }

@@ -77,36 +77,6 @@ namespace LingvaApp.Controllers
             }
             else
             {
-                return RedirectToAction("ChooseLesson", model);
-            }
-        }
-
-        /// <summary>
-        /// Третья страница создания урока. На ней выпадающее меню с функцией создания нового урока или выбором 
-        /// существующего. И кнопка отправки формы.
-        /// </summary>
-        public IActionResult ChooseLesson(Task model)
-        {
-            var lessons = _dbContext.Lessons.Where(x => x.ThemeParentID == model.ThemeParentID).ToList();
-            ViewBag.lessons = lessons;
-            return View(model);
-        }
-
-        /// <summary>
-        /// Вызывается при отправке формы третьего урока в LessonCreate/ChooseTask
-        /// </summary>
-        /// <param name="model">Заполненная модель с LessonParentID</param>
-        [HttpPost("ChooseLesson")]
-        public IActionResult ChooseLessonPost(Task model)
-        {
-            // Add to db
-            if (model.LessonParentID == 0)
-            {
-                TaskLesson newModel = new TaskLesson() { Task = model, Lesson = new Lesson() };
-                return View("NewLesson", newModel);
-            }
-            else
-            {
                 return RedirectToAction("ChooseTask", model);
             }
         }
@@ -116,7 +86,7 @@ namespace LingvaApp.Controllers
         /// </summary>
         public IActionResult ChooseTask(Task model)
         {
-            var tasks = _dbContext.Tasks.Where(x => (x.ThemeParentID == model.ThemeParentID) && (x.LessonParentID == model.ThemeParentID)).ToList();
+            var tasks = _dbContext.Tasks.Where(x => x.ThemeParentID == model.ThemeParentID).ToList();
             ViewBag.tasks = tasks;
             return View(model);
         }
@@ -179,20 +149,30 @@ namespace LingvaApp.Controllers
         /// <summary>
         /// Шестая, необязательная страница создания урока. Открывает страницу редактирования полей
         /// </summary>
-        public IActionResult EditTaskFields(Task model) => View();
+        public IActionResult EditTaskFields(Task model)
+        {
+            TaskFields newModel = new TaskFields() { Task = model, Field = new Field() };
+            return View(newModel);
+        }
         
-
         /// <summary>
         /// Вызывается по нажатии кнопки "сохранить" в поле для ответов к задаче у задания
         /// </summary>
         [HttpPost("EditTaskFields")]
-        public IActionResult EditTaskFieldsPost(Task model) { return View("EditTaskFields"); }
+        public async System.Threading.Tasks.Task<IActionResult> EditTaskFieldsPostAsync(TaskFields model) 
+        {
+            model.Field.TaskParentID = model.Task.TaskID;
+            Field field = model.Field;
+            _dbContext.Field.Add(field);
+            await _dbContext.SaveChangesAsync();
+            return View("EditTaskFields"); 
+        }
 
         /// <summary>
         /// Открывает страницу с полем ввода названия темы. 
         /// Вызывается по нажатии кнопки "Новая тема" в LessonCreate/ChooseTheme
         /// </summary>
-            public IActionResult NewTheme(TaskTheme model) => View();
+        public IActionResult NewTheme(TaskTheme model) => View();
 
         /// <summary>
         /// Вызывается по нажатию кнопки "далее" после ввода названия урока
@@ -211,33 +191,6 @@ namespace LingvaApp.Controllers
             taskModel.ThemeParentID = theme.ThemeID;
 
             return RedirectToAction("ChooseLesson", taskModel);
-        }
-
-        /// <summary>
-        /// Открывает страницу с полем ввода названия темы. 
-        /// Вызывается по нажатии кнопки "Новый урок" в LessonCreate/ChooseLesson
-        /// </summary>
-        public IActionResult NewLesson(TaskLesson model) => View(model);
-        
-
-        /// <summary>
-        /// Вызывается по нажатию кнопки "далее" после ввода названия урока
-        /// </summary>
-        [HttpPost("NewLesson")]
-        public async System.Threading.Tasks.Task<IActionResult> NewLessonPostAsync(TaskLesson model)
-        {
-            Lesson lesson = model.Lesson;
-            Task task = model.Task;
-            lesson.CreationTimestamp = DateTime.Now;
-            lesson.LanguageParent = task.LanguageParent;
-            lesson.ThemeParentID = task.ThemeParentID;
-
-            _dbContext.Lessons.Add(lesson);
-            await _dbContext.SaveChangesAsync();
-
-            task.LessonParentID = lesson.LessonID;
-
-            return RedirectToAction("ChooseTaskType", task);
         }
     }
 }

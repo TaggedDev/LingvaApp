@@ -8,7 +8,6 @@ namespace LingvaApp.Models
         [Key]
         public int TaskID { get; set; }
         public string LanguageParent { get; set; }
-        public int LessonParentID { get; set; }
         public int ThemeParentID { get; set; }
         public string TaskType { get; set; }
         public string TextFieldContent { get; set; }
