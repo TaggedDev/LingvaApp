@@ -16,10 +16,10 @@
 <body>
     @await Html.PartialAsync("_HeaderPartial")
     <div class="levels">
-        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "A1" } })
-        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "A2" } })
-        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "B1" } })
-        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "B2" } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "A1" }, { "themes", Model } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "A2" }, { "themes", Model } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "B1" }, { "themes", Model } })
+        @await Html.PartialAsync("_LevelPartial", null, new ViewDataDictionary(ViewData) { { "level", "B2" }, { "themes", Model } })
     </div>
 </body>
 </html>
