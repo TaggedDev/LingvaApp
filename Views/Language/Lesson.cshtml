@@ -1,0 +1,53 @@
+﻿@model LingvaApp.ViewModels.ThemeViewModel
+@{ 
+    Layout = null;
+    int loadId = Convert.ToInt32(ViewBag.LoadId);
+    List<Field> fields = ViewBag.Fields as List<Field>;
+    int i = 0;
+}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lingva: Deutsch</title>
+    <link rel="stylesheet" href="../../css/language/lang.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+    @await Html.PartialAsync("_CssHeaderPartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class="lesson_navigation">
+        @foreach (LingvaApp.Models.Task task in Model.Tasks)
+        {
+            if (i == loadId)
+            {
+                <a asp-controller="Language" asp-action="Lesson" asp-route-theme="@task.ThemeParentID" asp-route-taskid="@task.TaskID">
+                    <div style="height:40px;width:40px;background-color:pink;cursor:pointer;margin-right:10px;margin-bottom:10px"></div>
+                </a>
+            }
+            else
+            {
+                <a asp-controller="Language" asp-action="Lesson" asp-route-theme="@task.ThemeParentID" asp-route-taskid="@task.TaskID">
+                    <div style="height:40px;width:40px;background-color:blue;cursor:pointer;margin-right:10px;margin-bottom:10px"></div>
+                </a>
+            }
+
+            i++;
+        }
+
+    </div>
+    <div class="lesson_box">
+        <form class="content">
+            <div class="tasks">
+                @foreach (Field field in fields)
+                {
+                    <div class="oneline">
+                        <p class="task_text">@field.TaskContent <input type="text"></p>
+                    </div>
+                }
+            </div>
+            <input type="submit" value="ОТВЕТИТЬ">
+        </form>
+    </div>
+</body>
+</html>
