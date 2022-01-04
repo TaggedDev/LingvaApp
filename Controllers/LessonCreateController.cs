@@ -163,9 +163,12 @@ namespace LingvaApp.Controllers
         {
             model.Field.TaskParentID = model.Task.TaskID;
             Field field = model.Field;
+            field.CreationTimestamp = DateTime.Now;
+
             _dbContext.Field.Add(field);
             await _dbContext.SaveChangesAsync();
-            return View("EditTaskFields"); 
+            
+            return View("EditTaskFields", model); 
         }
 
         /// <summary>
@@ -190,7 +193,7 @@ namespace LingvaApp.Controllers
             Task taskModel = model.Task;
             taskModel.ThemeParentID = theme.ThemeID;
 
-            return RedirectToAction("ChooseLesson", taskModel);
+            return RedirectToAction("ChooseTask", taskModel);
         }
     }
 }
