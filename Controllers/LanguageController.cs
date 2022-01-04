@@ -2,6 +2,7 @@
 using LingvaApp.Models;
 using LingvaApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace LingvaApp.Controllers
@@ -50,13 +51,23 @@ namespace LingvaApp.Controllers
             ThemeViewModel model = new ThemeViewModel(_dbContext, theme);
             if (taskid == 0)
             {
+                ViewBag.LoadId = model.Tasks[0].TaskID;
                 ViewBag.Fields = model.Fields[0];
+                return View(model);
             }
             else
             {
-                ViewBag.Fields = model.Fields.Where(x => x[0].TaskParentID == taskid);
+                foreach (List<Field> field in model.Fields)
+                {
+                    if (field[0].TaskParentID == taskid)
+                    {
+                        ViewBag.Fields = field;
+                        return View(model);
+                    }       
+                }
+                ViewBag.Fields = new List<Field>();
+                return View(model);
             }
-            return View(model);
         }
     }
 }

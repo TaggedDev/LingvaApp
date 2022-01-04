@@ -3,7 +3,6 @@
     Layout = null;
     int loadId = Convert.ToInt32(ViewBag.LoadId);
     List<Field> fields = ViewBag.Fields as List<Field>;
-    int i = 0;
 }
 <!DOCTYPE html>
 <html lang="ru">
@@ -19,7 +18,7 @@
     <div class="lesson_navigation">
         @foreach (LingvaApp.Models.Task task in Model.Tasks)
         {
-            if (i == loadId)
+            if (task.TaskID == loadId)
             {
                 <a asp-controller="Language" asp-action="Lesson" asp-route-theme="@task.ThemeParentID" asp-route-taskid="@task.TaskID">
                     <div style="height:40px;width:40px;background-color:pink;cursor:pointer;margin-right:10px;margin-bottom:10px"></div>
@@ -31,8 +30,6 @@
                     <div style="height:40px;width:40px;background-color:blue;cursor:pointer;margin-right:10px;margin-bottom:10px"></div>
                 </a>
             }
-
-            i++;
         }
 
     </div>
