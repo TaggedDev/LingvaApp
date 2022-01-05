@@ -21,7 +21,7 @@ namespace LingvaApp.Controllers
         {
             LanguageViewModel viewmodel = new LanguageViewModel()
             {
-                Themes = _dbContext.Themes.Where(x => x.LanguageParent == "English").ToList()
+                Themes = _dbContext.Themes.Where(x => x.LanguageParent == "English").OrderBy(x => x.OrderIndex).ToList()
             };
             return View(viewmodel);
         }
