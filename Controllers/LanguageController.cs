@@ -16,7 +16,6 @@ namespace LingvaApp.Controllers
             _dbContext = context;
         }
 
-
         public IActionResult English()
         {
             LanguageViewModel viewmodel = new LanguageViewModel()
@@ -43,7 +42,7 @@ namespace LingvaApp.Controllers
             };
             return View(viewmodel);
         }
-    
+
         public IActionResult Lesson(int theme, int taskid)
         {
             // If task id == 0, it should load first element. Else - load fields by taskId
@@ -63,7 +62,7 @@ namespace LingvaApp.Controllers
                     {
                         ViewBag.Fields = field;
                         return View(model);
-                    }       
+                    }
                 }
                 ViewBag.Fields = new List<Field>();
                 return View(model);
