@@ -7,6 +7,7 @@ namespace LingvaApp.Models
     {
         [Key]
         public int FieldID { get; set; }
+        public int OrderIndex { get; set; }
         public int TaskParentID { get; set; }
         public string TaskContent { get; set; }
         public string AnswersAliases { get; set; }

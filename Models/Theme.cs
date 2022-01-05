@@ -7,7 +7,7 @@ namespace LingvaApp.Models
     {
         [Key]
         public int ThemeID { get; set; }
-        public int LanguageLevelColumnPosition { get; set; }
+        public int OrderIndex { get; set; }
         public string LanguageParent { get; set; }
         public string ThemeLanguageLevel { get; set; }
         public string ThemeTopic { get; set; }
