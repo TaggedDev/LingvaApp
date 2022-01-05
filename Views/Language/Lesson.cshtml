@@ -34,17 +34,15 @@
 
     </div>
     <div class="lesson_box">
-        <form class="content">
-            <div class="tasks">
-                @foreach (Field field in fields)
-                {
-                    <div class="oneline">
-                        <p class="task_text">@field.TaskContent <input type="text"></p>
-                    </div>
-                }
-            </div>
-            <input type="submit" value="ОТВЕТИТЬ">
-        </form>
+        <div class="tasks">
+            @foreach (Field field in fields)
+            {
+                <div class="oneline">
+                    <p class="task_text ">@field.TaskContent <input type="text"></p>
+                </div>
+            }
+        </div>
+        <button id="btn" onclick="onCheckClicked">Проверить</button>
     </div>
 </body>
 </html>
