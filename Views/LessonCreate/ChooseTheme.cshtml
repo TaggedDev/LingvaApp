@@ -2,12 +2,6 @@
 @{
     Layout = null;
     List<Theme> themes = ViewBag.themes;
-    @*List<string> selectList = new List<string>();
-    foreach (Theme theme in themes)
-    {
-        string str = $"{theme.ThemeID}. {theme.ThemeTopic}";
-        selectList.Add(str);
-    }*@
     List<int> ints = new List<int>();
     foreach (Theme theme in themes)
         ints.Add(theme.ThemeID);
