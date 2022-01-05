@@ -69,7 +69,6 @@ namespace LingvaApp.Controllers
         [HttpPost("ChooseTheme")]
         public IActionResult ChooseThemePost(Task model)
         {
-            // Add to db and then redirect
             if (model.ThemeParentID == 0)
             {
                 TaskTheme newModel = new TaskTheme() { Task = model, Theme = new Theme() };
