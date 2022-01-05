@@ -1,5 +1,8 @@
 ﻿@model LingvaApp.ViewModels.TaskFields
-@{ Layout = null; }
+@{ 
+    Layout = null;
+    List<int> orderIndex = new List<int>() { 1, 2, 3, 4, 5, 6 };
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,9 +30,9 @@
                 <textarea class="input_field" type="text" asp-for="Field.TaskContent"></textarea>
                 <label class="field_item secondary" asp-for="Field.AnswersAliases">Правильный ответ</label>
                 <input class="input_field" type="text" asp-for="Field.AnswersAliases">
+                @Html.DropDownListFor(m => m.Field.OrderIndex, new SelectList(orderIndex), "Выберите уровень:")
                 <div class="button_container field_item">
                     <input type="submit" class="save_field_btn" value="Далее" />
-                    @*<button >Сохранить</button>*@
                 </div>
             </div>
         </form>

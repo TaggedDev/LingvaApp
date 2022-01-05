@@ -1,5 +1,9 @@
 ﻿@model LingvaApp.ViewModels.TaskTheme
-@{ Layout = null; }
+@{
+    Layout = null;
+    List<string> levels = new List<string>() { "A1", "A2", "B1", "B2", "C1", "C2" };
+    List<int> orderIndex = new List<int>() { 1, 2, 3, 4, 5, 6 };
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +23,8 @@
         <form class="form" method="post" asp-controller="LessonCreate" asp-action="NewThemePost">
             @Html.HiddenFor(m => m.Task.LanguageParent, Model.Task.LanguageParent)
             @Html.TextBoxFor(m => m.Theme.ThemeTopic)
+            @Html.DropDownListFor(m => m.Theme.ThemeLanguageLevel, new SelectList(levels), "Выберите уровень:")
+            @Html.DropDownListFor(m => m.Theme.OrderIndex, new SelectList(orderIndex), "Выберите уровень:")
             <input type="submit" name="ДАЛЕЕ" />
         </form>
     </div>

@@ -1,5 +1,8 @@
 ﻿@model LingvaApp.Models.Task
-@{Layout = null;}
+@{
+    Layout = null;
+    List<int> orderIndex = new List<int>() { 1, 2, 3, 4, 5, 6 };
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +27,7 @@
             <div class="textarea_container">
                 @Html.TextAreaFor(m => m.TextFieldContent, new { @class = "textarea" })
             </div>
+            @Html.DropDownListFor(m => m.OrderIndex, new SelectList(orderIndex), "Выберите индекс:")
             <input class="save_text_btn" type="submit" value="СОХРАНИТЬ ТЕКСТ" />
         </form>
         <div class="bottom_block">
