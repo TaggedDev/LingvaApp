@@ -9,6 +9,8 @@ namespace LingvaApp.Data
         public DbSet<Theme> Themes { get; set; }
         public DbSet<Task> Tasks { get; set; }
         public DbSet<Field> Field { get; set; }
+        public DbSet<PublishedArticle> PublishedArticles { get; set; }
+        public DbSet<PendingArticle> PendingArticles { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
