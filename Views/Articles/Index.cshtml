@@ -1,0 +1,37 @@
+﻿@{ Layout = null; }
+
+<html>
+<head>
+    <title>Article section</title>
+    <link rel="stylesheet" href="../../css/articles/articles.css" asp-append-version="true" />
+    @await Html.PartialAsync("_CssHeaderPartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    <button id="new_article" class="new_article btn" onclick="@($"window.location.href='{Url.Action("New", "Articles")}';")">
+        <img class="img_btn_inner" src="~/assets/chat.png">
+    </button>
+    <div class="article">
+        <div class="article__author">
+            <img src="https://habrastorage.org/getpro/habr/post_images/20f/849/fcd/20f849fcd6a3891f506676fc87223bdf.jpg" alt="authorLogo" class="article__author__logo">
+            <div class="article__author__nickname">ArtemBoiko</div>
+            <span class="article__creation__date">Today 16:44</span>
+        </div>
+        <div class="article__name">Lobbists' war</div>
+        <div class="article__tags">
+            <div class="article__tags__tag language">English</div>
+            <div class="article__tags__tag topic">Politics, IT</div>
+            <div class="article__tags__tag level">B2</div>
+        </div>
+        <div class="article__content">
+            <img src="https://habrastorage.org/getpro/habr/post_images/20f/849/fcd/20f849fcd6a3891f506676fc87223bdf.jpg" alt="articleThumbnail" class="article__img__Thumbnail">
+            <div class="article__CutText">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, molestias architecto laborum totam consequuntur deleniti sequi porro illo ut itaque blanditiis voluptate rem repellat? Nostrum quidem quod perferendis suscipit consectetur!
+                Ipsum, praesentium inventore, eaque itaque, a debitis accusamus necessitatibus quod iusto aliquid minus. Sequi dicta rerum minus. Aperiam, doloremque accusantium distinctio hic voluptatem excepturi? Obcaecati quaerat illum nulla ipsa illo!
+                Cum suscipit numquam vitae mollitia, voluptates repellendus impedit rerum reprehenderit cupiditate velit temporibus quam nisi delectus obcaecati quia placeat soluta ad fugiat voluptatibus minima accusamus accusantium beatae. Beatae, harum asperiores.
+            </div>
+            <a href="#">Read More</a>
+        </div>
+    </div>
+</body>
+</html>

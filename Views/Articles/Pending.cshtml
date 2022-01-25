@@ -1,0 +1,20 @@
+﻿@model List<LingvaApp.Models.PendingArticle>
+@{ Layout = null; }
+
+<html>
+<head>
+    <title>Pending articles</title>
+</head>
+<body>
+    @foreach (PendingArticle article in Model)
+    {
+    <div>
+        <h1>@article.Title</h1>
+        <h2>@article.Description</h2>
+        <h2>@article.CreationDate</h2>
+        <button>X</button>
+        <button>V</button>
+    </div>
+    }
+</body>
+</html>
