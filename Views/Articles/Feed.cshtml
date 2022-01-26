@@ -8,6 +8,8 @@
 </head>
 <body>
     @await Html.PartialAsync("_HeaderPartial")
+    @Html.ActionLink("УПРАВЛЕНИЕ", "Pendings")
+    @Html.ActionLink("СОЗДАТЬ", "Create")
     <button id="new_article" class="new_article btn" onclick="@($"window.location.href='{Url.Action("New", "Articles")}';")">
         <img class="img_btn_inner" src="~/assets/chat.png">
     </button>
