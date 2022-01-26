@@ -1,0 +1,51 @@
+﻿@model List<LingvaApp.Models.PendingArticle>
+@{ Layout = null; }
+
+<html>
+<head>
+    <title>Pending articles</title>
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    @foreach (PendingArticle article in Model)
+    {
+        <div id="pending_id{@article.ArticleID}"> 
+            <h1>@Html.ActionLink($"{@article.Title}", "PendingArticle", "Articles", new { id = article.ArticleID }, null)</h1>
+            <h2>@article.Description</h2>
+            <h2>@article.CreationDate</h2>
+            <button onclick="delete_article(@article.ArticleID)">X</button>
+            <button onclick="approve_article(@article.ArticleID)">V</button>
+        </div>
+    }
+
+    
+<script>
+    function delete_article(articleId) {
+        $.ajax({
+            type: "POST",
+            url: "/Articles/OnDeleteButtonPressed",
+            data: { id: articleId },
+            dataType: "json",
+            error: function (data) {
+                alert("Error " + data)
+            }
+        });
+        document.getElementById(`pending_id{${articleId}}`).remove();
+    }
+
+    function approve_article(articleId) {
+        $.ajax({
+            type: "POST",
+            url: "/Articles/OnApproveButtonPressed",
+            data: { id: articleId },
+            dataType: "json",
+            error: function (data) {
+                alert("Error " + data)
+            }
+        });
+        document.getElementById(`pending_id{${articleId}}`).remove();
+    }
+</script>
+</body>
+</html>
