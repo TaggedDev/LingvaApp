@@ -1,0 +1,51 @@
+﻿@model LingvaApp.Models.PendingArticle
+@{ Layout = null; }
+
+<html>
+<head>
+    <title>@Model.Title</title>
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+    @Url.ActionLink("НАЗАД", "Pending")
+    @Model.AuthorID - @Model.ArticleID
+    <h1>@Model.Title</h1>
+    <img src="~/assets/library.jpg" style="width:100%;height:100px;margin-bottom:40px;" />
+    @Html.Raw(Model.Content)
+    @Model.Language
+    @Model.Level
+    @Model.CreationDate
+    @Model.Tags
+    <button onclick="delete_article(@Model.ArticleID)">X</button>
+    <button onclick="approve_article(@Model.ArticleID)">V</button>
+
+    <script>
+        function delete_article(articleId) {
+            $.ajax({
+                type: "POST",
+                url: "/Articles/OnDeleteButtonPressed",
+                data: { id: articleId },
+                dataType: "json",
+                error: function (data) {
+                    alert("Error " + data)
+                }
+            });
+            window.location.href = "/Articles/Pendings/";
+        }
+
+        function approve_article(articleId) {
+            $.ajax({
+                type: "POST",
+                url: "/Articles/OnApproveButtonPressed",
+                data: { id: articleId },
+                dataType: "json",
+                error: function (data) {
+                    alert("Error " + data)
+                }
+            });
+            window.location.href = "/Articles/Pendings/";
+        }
+    </script>
+</body>
+</html>
