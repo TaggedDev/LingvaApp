@@ -3,15 +3,17 @@ using System;
 using LingvaApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace LingvaApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220127135146_UserPFPMigration")]
+    partial class UserPFPMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -120,13 +122,7 @@ namespace LingvaApp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("AuthorAvatarURL")
-                        .HasColumnType("text");
-
                     b.Property<string>("AuthorID")
-                        .HasColumnType("text");
-
-                    b.Property<string>("AuthorUsername")
                         .HasColumnType("text");
 
                     b.Property<string>("Content")
@@ -147,9 +143,6 @@ namespace LingvaApp.Migrations
                     b.Property<string>("Tags")
                         .HasColumnType("text");
 
-                    b.Property<string>("ThumbnailURL")
-                        .HasColumnType("text");
-
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
@@ -165,13 +158,7 @@ namespace LingvaApp.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("AuthorAvatarURL")
-                        .HasColumnType("text");
-
                     b.Property<string>("AuthorID")
-                        .HasColumnType("text");
-
-                    b.Property<string>("AuthorUsername")
                         .HasColumnType("text");
 
                     b.Property<string>("Content")
@@ -193,9 +180,6 @@ namespace LingvaApp.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Tags")
-                        .HasColumnType("text");
-
-                    b.Property<string>("ThumbnailURL")
                         .HasColumnType("text");
 
                     b.Property<string>("Title")

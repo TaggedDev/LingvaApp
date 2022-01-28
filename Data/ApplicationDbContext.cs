@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LingvaApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public DbSet<Theme> Themes { get; set; }
         public DbSet<Task> Tasks { get; set; }
