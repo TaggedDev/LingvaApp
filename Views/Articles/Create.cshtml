@@ -14,14 +14,18 @@
     <script type="text/javascript">
         tinymce.init({
             selector: "textarea.mce",
+            plugins: 'lists link advlist autolink autosave charmap autosave codesample image wordcount',
+            toolbar: 'undo redo | bold italic underline strikethrough superscript subscript | h1 h2 h3 p | numlist bullist | removeformat | image link codesample | restoredraft wordcount',
+            default_link_target: "_blank",
             menubar: false
         });
     </script>
 
-    <form method="post" asp-controller="Articles" asp-action="CreatePost" class="form">
+    <form method="post" asp-controller="Articles" asp-action="CreatePost" enctype="multipart/form-data" class="form">
         @Html.TextBoxFor(m => m.Title)
         @Html.TextAreaFor(m => m.Description)
-        @Html.TextAreaFor(m => m.Content, new { @class = "mce" } )
+        @Html.TextAreaFor(m => m.Content, new { @class = "mce" })
+        @Html.TextBoxFor(m => m.ThumbnailPicture, new { type = "file" })
         @Html.DropDownListFor(m => m.Level, new SelectList(levels), "Выберите уровень:")
         @Html.DropDownListFor(m => m.Language, new SelectList(langs), "Выберите язык:")
         @Html.TextBoxFor(m => m.Tags)
