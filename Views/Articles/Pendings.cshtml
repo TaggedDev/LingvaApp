@@ -27,11 +27,13 @@
             url: "/Articles/OnDeleteButtonPressed",
             data: { id: articleId },
             dataType: "json",
+            success: function () {
+                document.getElementById(`pending_id{${articleId}}`).remove();
+            },
             error: function (data) {
                 alert("Error " + data)
             }
         });
-        document.getElementById(`pending_id{${articleId}}`).remove();
     }
 
     function approve_article(articleId) {
@@ -40,6 +42,9 @@
             url: "/Articles/OnApproveButtonPressed",
             data: { id: articleId },
             dataType: "json",
+            success: function () {
+                document.getElementById(`pending_id{${articleId}}`).remove();
+            },
             error: function (data) {
                 alert("Error " + data)
             }

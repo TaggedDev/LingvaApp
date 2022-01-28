@@ -27,11 +27,13 @@
                 url: "/Articles/OnDeleteButtonPressed",
                 data: { id: articleId },
                 dataType: "json",
+                success: function () {
+                    window.location.href = "/Articles/Pendings/";
+                },
                 error: function (data) {
                     alert("Error " + data)
                 }
-            });
-            window.location.href = "/Articles/Pendings/";
+            }); 
         }
 
         function approve_article(articleId) {
@@ -40,11 +42,13 @@
                 url: "/Articles/OnApproveButtonPressed",
                 data: { id: articleId },
                 dataType: "json",
+                success: function () {
+                    window.location.href = "/Articles/Pendings/";
+                },
                 error: function (data) {
                     alert("Error " + data)
                 }
             });
-            window.location.href = "/Articles/Pendings/";
         }
     </script>
 </body>
