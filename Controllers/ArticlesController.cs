@@ -6,18 +6,22 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace LingvaApp.Controllers
 {
     public class ArticlesController : Controller
     {
         private ApplicationDbContext _dbContext;
-        private UserManager<IdentityUser> _userManager;
+        private UserManager<ApplicationUser> _userManager;
+        private IWebHostEnvironment _appEnvironment;
 
-        public ArticlesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
+        public ArticlesController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, IWebHostEnvironment appEnvironment)
         {
             _dbContext = context;
             _userManager = userManager;
+            _appEnvironment = appEnvironment;
         }
 
         /* == VIEWS == */
@@ -35,7 +39,8 @@ namespace LingvaApp.Controllers
         [Route("Articles/")]
         public IActionResult Feed()
         {
-            return View();
+            List<PublishedArticle> articles = _dbContext.PublishedArticles.ToList();
+            return View(articles);
         }
 
         /// <summary>
@@ -92,9 +97,19 @@ namespace LingvaApp.Controllers
         [HttpPost("Create")]
         public async Task<IActionResult> CreatePostAsync(PendingArticle model)
         {
-            IdentityUser user = await _userManager.GetUserAsync(User);
+            ApplicationUser user = await _userManager.GetUserAsync(User);
+
+            string path = @$"/files/ArticleThumbnails/{DateTime.Now.ToString("MM-dd-yyyy--HH-mm-tt")}-{model.ThumbnailPicture.FileName}";
+
+            using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+            {
+                await model.ThumbnailPicture.CopyToAsync(fileStream);
+            }
+
+            model.ThumbnailURL = path;
             model.CreationDate = DateTime.Now;
             model.AuthorID = user.Id;
+            model.AuthorAvatarURL = user.AvatarURL;
             await _dbContext.PendingArticles.AddAsync(model);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Feed");
@@ -122,6 +137,12 @@ namespace LingvaApp.Controllers
         {
             DeletePendingArticle(id);
             return new JsonResult("");
+        }
+
+        public IActionResult ReturnFilteredArticles(string language, string level, string author, string tags, string keywords)
+        {
+            List<PublishedArticle> result = _dbContext.PublishedArticles.Where(m => m.Level == "A2").ToList();
+            return new JsonResult(result);
         }
 
         /* == BUTTON HANLDERS END == */
@@ -159,8 +180,11 @@ namespace LingvaApp.Controllers
         public PublishedArticle ConvertPendingToPublish(PendingArticle income) => new PublishedArticle
         {
             AuthorID = income.AuthorID,
+            AuthorUsername = income.AuthorUsername,
+            AuthorAvatarURL = income.AuthorAvatarURL,
             Title = income.Title,
             Description = income.Description,
+            ThumbnailURL = income.ThumbnailURL,
             Content = income.Content,
             Language = income.Language,
             Level = income.Level,
@@ -168,6 +192,5 @@ namespace LingvaApp.Controllers
             Rating = 0,
             CreationDate = DateTime.Now
         };
-
     }
 }
