@@ -1,4 +1,5 @@
 using LingvaApp.Data;
+using LingvaApp.Models;
 using LingvaApp.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +24,7 @@ namespace LingvaApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(
+            services.AddDefaultIdentity<ApplicationUser>(
                 options =>
                 {
                     options.Password.RequireDigit = false;
