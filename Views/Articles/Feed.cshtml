@@ -1,4 +1,5 @@
-﻿@{ Layout = null; }
+﻿@model List<LingvaApp.Models.PublishedArticle>
+@{ Layout = null; }
 
 <html>
 <head>
@@ -9,31 +10,67 @@
 <body>
     @await Html.PartialAsync("_HeaderPartial")
     @Html.ActionLink("УПРАВЛЕНИЕ", "Pendings")
-    @Html.ActionLink("СОЗДАТЬ", "Create")
     <button id="new_article" class="new_article btn" onclick="@($"window.location.href='{Url.Action("New", "Articles")}';")">
         <img class="img_btn_inner" src="~/assets/chat.png">
     </button>
-    <div class="article">
-        <div class="article__author">
-            <img src="https://habrastorage.org/getpro/habr/post_images/20f/849/fcd/20f849fcd6a3891f506676fc87223bdf.jpg" alt="authorLogo" class="article__author__logo">
-            <div class="article__author__nickname">ArtemBoiko</div>
-            <span class="article__creation__date">Today 16:44</span>
-        </div>
-        <div class="article__name">Lobbists' war</div>
-        <div class="article__tags">
-            <div class="article__tags__tag language">English</div>
-            <div class="article__tags__tag topic">Politics, IT</div>
-            <div class="article__tags__tag level">B2</div>
-        </div>
-        <div class="article__content">
-            <img src="https://habrastorage.org/getpro/habr/post_images/20f/849/fcd/20f849fcd6a3891f506676fc87223bdf.jpg" alt="articleThumbnail" class="article__img__Thumbnail">
-            <div class="article__CutText">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui, molestias architecto laborum totam consequuntur deleniti sequi porro illo ut itaque blanditiis voluptate rem repellat? Nostrum quidem quod perferendis suscipit consectetur!
-                Ipsum, praesentium inventore, eaque itaque, a debitis accusamus necessitatibus quod iusto aliquid minus. Sequi dicta rerum minus. Aperiam, doloremque accusantium distinctio hic voluptatem excepturi? Obcaecati quaerat illum nulla ipsa illo!
-                Cum suscipit numquam vitae mollitia, voluptates repellendus impedit rerum reprehenderit cupiditate velit temporibus quam nisi delectus obcaecati quia placeat soluta ad fugiat voluptatibus minima accusamus accusantium beatae. Beatae, harum asperiores.
-            </div>
-            <a href="#">Read More</a>
-        </div>
+
+    <div class="search_bar">
+        <input id="search_language" value="ЯЗЫК:" /> <!--->Searches by language<--->
+        <input id="search_level" value="УРОВЕНЬ" /> <!--->Searches by level<--->
+        <input id="search_author" value="АВТОР:"/> <!--->Searches by User<--->
+        <input id="search_tags" value="ТЭГИ:" /> <!--->Searches by tags<--->
+        <input id="search_keywords" value="СЛОВА:" /> <!--->Searches by words in title and description<--->
+        <input type="submit" value="ПОИСК" onclick="get_filtered_articles()"/>
     </div>
+
+    <div class="articles">
+        @foreach (PublishedArticle item in Model)
+        {
+            <div class="article">
+                <div class="article__author">
+                    <img src="@item.AuthorAvatarURL" alt="authorLogo" class="article__author__logo">
+                    <div class="article__author__nickname">@item.AuthorUsername</div>
+                    <span class="article__creation__date">@item.CreationDate</span>
+                </div>
+                <div class="article__title">@item.Title</div>
+                <div class="article__tags">
+                    <div class="article__tags__tag language">@item.Language</div>
+                    <div class="article__tags__tag tags">@item.Tags</div>
+                    <div class="article__tags__tag level">@item.Level</div>
+                </div>
+                <div class="article__content">
+                    <img src="@item.ThumbnailURL" alt="articleThumbnail" class="article__img__Thumbnail">
+                    <div class="article__CutText">@item.Description</div>
+                    @Html.ActionLink("Читать далее", "Article", "Articles", new { id = item.ArticleID }, null)
+                </div>
+            </div>
+        }
+    </div>
+
+    <script type="text/javascript">
+        function get_filtered_articles() {
+            var search_language = document.getElementById("search_language").value;
+            var search_level = document.getElementById("search_level").value;
+            var search_author = document.getElementById("search_author").value;
+            var search_tags = document.getElementById("search_tags").value;
+            var search_keywords = document.getElementById("search_keywords").value;
+            console.log(search_language, search_level, search_author, search_tags, search_keywords)
+            $.ajax({
+                type: "POST",
+                url: "/Articles/ReturnFilteredArticles",
+                data: {
+                    language: search_language,
+                    level: search_level,
+                    author: search_author,
+                    tags: search_tags,
+                    keywords: search_keywords
+                },
+                dataType: "json",
+                error: function (data) {
+                    alert("Error " + data)
+                }
+            });
+        }
+    </script>
 </body>
 </html>
