@@ -17,9 +17,25 @@
             selector: "textarea.mce",
             plugins: 'lists link advlist autolink autosave charmap autosave codesample image wordcount',
             toolbar: 'undo redo | bold italic underline strikethrough superscript subscript | h1 h2 h3 p | numlist bullist | removeformat | image link codesample | restoredraft wordcount',
+            image_list: [
+                { title: 'example1', value: 'https://www.example.com/my1.gif' },
+                { title: 'example2', value: 'http://www.moxiecode.com/my2.gif' }
+            ],
             default_link_target: "_blank",
             menubar: false
         });
+
+        function get_images() {
+            $.ajax({
+                type: "POST",
+                url: "/Articles/GetImagesLinks",
+                dataType: "json",
+                error: function (data) {
+                    alert("Error: " + data)
+                }
+            });
+        }
+
     </script>
     <form method="post" asp-controller="Articles" asp-action="CreatePost" enctype="multipart/form-data" class="form">
         <div asp-validation-summary="ModelOnly"></div>
@@ -41,6 +57,5 @@
             @errors
         </div>
     </form>
-    
 </body>
 </html>
