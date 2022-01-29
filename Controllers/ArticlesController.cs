@@ -55,7 +55,8 @@ namespace LingvaApp.Controllers
         /// </summary
         public IActionResult Pendings()
         {
-            List<PendingArticle> pendings = _dbContext.PendingArticles.OrderBy(x => x.CreationDate).ToList();
+            /*List<PendingArticle> pendings = _dbContext.PendingArticles.OrderBy(x => x.CreationDate).ToList();*/
+            List<PendingArticle> pendings = _dbContext.PendingArticles.ToList();
             return View(pendings);
         }
 
@@ -94,25 +95,37 @@ namespace LingvaApp.Controllers
         /// <summary>
         /// Calls on 'create article' form and adds to pending articles
         /// </summary>
-        [HttpPost("Create")]
-        public async Task<IActionResult> CreatePostAsync(PendingArticle model)
+        [HttpPost("Articles/Create")]
+        public async Task<IActionResult> CreatePost(PendingArticle model)
         {
-            ApplicationUser user = await _userManager.GetUserAsync(User);
-
-            string path = @$"/files/ArticleThumbnails/{DateTime.Now.ToString("MM-dd-yyyy--HH-mm-tt")}-{model.ThumbnailPicture.FileName}";
-
-            using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+            if (ModelState.IsValid)
             {
-                await model.ThumbnailPicture.CopyToAsync(fileStream);
+                ApplicationUser user = await _userManager.GetUserAsync(User);
+                if (user != null)
+                {
+                    string path;
+                    if (model.ThumbnailPicture != null)
+                    {
+                        path = @$"/files/ArticleThumbnails/{DateTime.Now.ToString("MM-dd-yyyy--HH-mm-tt")}-{model.ThumbnailPicture.FileName}";
+                        using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                        {
+                            await model.ThumbnailPicture.CopyToAsync(fileStream);
+                        }
+                        model.ThumbnailURL = path;
+                    }
+                    model.CreationDate = DateTime.Now;
+                    model.AuthorID = user.Id;
+                    model.AuthorAvatarURL = user.AvatarURL;
+                    await _dbContext.PendingArticles.AddAsync(model);
+                    await _dbContext.SaveChangesAsync();
+                    return RedirectToAction("Feed");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Вы не авторизованы");
+                }
             }
-
-            model.ThumbnailURL = path;
-            model.CreationDate = DateTime.Now;
-            model.AuthorID = user.Id;
-            model.AuthorAvatarURL = user.AvatarURL;
-            await _dbContext.PendingArticles.AddAsync(model);
-            await _dbContext.SaveChangesAsync();
-            return RedirectToAction("Feed");
+            return View("Create", model);
         }
 
         /* == FORMS HANDLERS END == */

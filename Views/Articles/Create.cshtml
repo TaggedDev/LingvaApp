@@ -3,6 +3,7 @@
     Layout = null;
     List<string> levels = new List<string>() {"A1", "A2", "B1", "B2", "C1", "C2" };
     List<string> langs = new List<string>() { "Русский", "Английский", "Немецкий"};
+    string errors = ViewBag.ErrorMessage;
 }
 
 <!DOCTYPE html>
@@ -20,8 +21,8 @@
             menubar: false
         });
     </script>
-
     <form method="post" asp-controller="Articles" asp-action="CreatePost" enctype="multipart/form-data" class="form">
+        <div asp-validation-summary="ModelOnly"></div>
         @Html.TextBoxFor(m => m.Title)
         @Html.TextAreaFor(m => m.Description)
         @Html.TextAreaFor(m => m.Content, new { @class = "mce" })
@@ -30,6 +31,16 @@
         @Html.DropDownListFor(m => m.Language, new SelectList(langs), "Выберите язык:")
         @Html.TextBoxFor(m => m.Tags)
         <input type="submit" value="Сохранить черновик" />
+        <div class="errors">
+            <div><span asp-validation-for="Title"></span></div>
+            <div><span asp-validation-for="Description"></span></div>
+            <div><span asp-validation-for="Content"></span></div>
+            <div><span asp-validation-for="Language"></span></div>
+            <div><span asp-validation-for="Level"></span></div>
+            <div><span asp-validation-for="Tags"></span></div>
+            @errors
+        </div>
     </form>
+    
 </body>
 </html>
