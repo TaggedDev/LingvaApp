@@ -1,0 +1,194 @@
+﻿@charset "utf-8";
+
+body {
+    background-color: rgb(219, 219, 219);
+}
+
+table {
+    border-spacing: 0px;
+}
+
+tbody {
+    margin: 0px;
+    padding: 0px;
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.separator {
+    margin-top: 8px;
+    margin-bottom: 12px;
+    position: inherit;
+    height: 1px;
+    background-color: rgb(141, 141, 141);
+    width: 100%;
+}
+
+.user_sources {
+    position: relative;
+}
+
+.top_banner {
+    background-color: darkgrey;
+    width: 100%;
+    height: 22vh;
+}
+
+.top_avatar {
+    background-color: white;
+    border-radius: 50%;
+    height: 260px;
+    width: 260px;
+    position: absolute;
+    bottom: -130px;
+    left: 140px;
+    margin: auto;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 140px;
+    margin-right: 140px;
+    margin-top: 184px;
+}
+
+.user_block {
+    height: 458px;
+    border: 1px solid black;
+}
+
+.block_about, .block_friendlist {
+    width: 398px;
+}
+
+.block_progress {
+    width: 800px;
+}
+
+.block_content {
+    position: relative;
+    padding: 12px;
+}
+
+.user_property {
+    font-weight: normal;
+    padding-bottom: 8px;
+    font-size: 20px;
+}
+
+.user_about {
+    width: 100%;
+    height: 178px;
+    background-color: rgb(240, 239, 239);
+}
+
+.user_about_text {
+    font-size: 16px;
+    line-height: 1.15;
+    padding: 16px;
+    word-break: break-all;
+}
+
+.edit_button_box {
+    margin-top: 12px;
+    position: relative;
+}
+
+.user_edit {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+}
+
+.language {
+    border: 1px solid black;
+    margin-bottom: 8px;
+    height: 96px;
+}
+
+.language_content {
+    margin: 5px 12px 2px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.language_content {
+    text-align: center;
+}
+
+.language_logo_round {
+    border-radius: 50%;
+    width: 84px;
+    height: 84px;
+}
+
+.language_info {
+    width: 122px;
+}
+
+.language_name, .language_certification_title {
+    font-size: 20px;
+}
+
+.language_certification {
+    width: 260px;
+}
+
+.language_level, .language_certification_date {
+    font-size: 32px;
+}
+
+.language_details {
+    width: 260px;
+}
+
+.see_details_btn {
+    margin-left: 16px;
+    margin-bottom: 3px;
+    padding: 12px 40px;
+    font-size: 20px;
+}
+
+.languages_footer {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.see_all_btn {
+    padding: 12px 40px;
+    font-size: 20px;
+}
+
+.friend {
+    border: 1px solid black;
+    margin-bottom: 8px;
+}
+
+.friend_content {
+    display: flex;
+    align-items: center;
+    margin: 6px 12px;
+}
+
+.friend_avatar {
+    background-color: white;
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+.friends_footer {
+    display: flex;
+    justify-content: center;
+}
+
+.friend_username {
+    margin-left: 44px;
+}

@@ -1,0 +1,140 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/profile.css">
+    @await Html.PartialAsync("_CssHeaderPartial")
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+
+    <div class="user_sources">
+        <img src="../../assets/library.jpg" alt="" class="top_banner">
+        <img src="../../assets/vocab.png" alt="logo" class="top_avatar">
+    </div>
+
+    @Html.ActionLink("Загрузить картинку", "UploadImage")
+
+
+    <div class="container">
+        <div class="user_block block_about">
+            <div class="block_content">
+                <h1>О %user%</h1>
+                <div class="separator"></div>
+                <h2 class="user_property">Страна: Российская федерация</h2>
+                <h2 class="user_property">Город: Москва</h2>
+                <h2 class="user_property">Возраст: 17</h2>
+                <h2 class="user_property">О себе:</h2>
+                <div class="user_about">
+                    <div class="user_about_text">
+                        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                    </div>
+                </div>
+                <div class="edit_button_box">
+                    &#8203;
+                    <img src="#" alt="pic" class="user_edit">
+                </div>
+            </div>
+        </div>
+
+        <div class="user_block block_progress">
+            <div class="block_content">
+                <h1>Успехи:</h1>
+                <div class="separator"></div>
+                <div class="languages">
+                    <div class="language">
+                        <table class="language_content">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3"><img src="../../assets/white.png" alt="logo" class="language_logo_round"></td>
+                                    <td class="language_name language_item language_info">ЯЗЫК</td>
+                                    <td class="language_certification_title language_item language_certification">Сертификат выдан:</td>
+                                    <td class="language_details" rowspan="3"><button class="see_details_btn">Подробнее >></button></td>
+                                </tr>
+                                <tr>
+                                    <td class="language_level language_item language_info" rowspan="2">А2</td>
+                                    <td class="language_certification_date language_item language_certification" rowspan="2">01.01.1970 00:00</td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="language">
+                        <table class="language_content">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3"><img src="../../assets/white.png" alt="logo" class="language_logo_round"></td>
+                                    <td class="language_name language_item language_info">ЯЗЫК</td>
+                                    <td class="language_certification_title language_item language_certification">Сертификат выдан:</td>
+                                    <td class="language_details" rowspan="3"><button class="see_details_btn">Подробнее >></button></td>
+                                </tr>
+                                <tr>
+                                    <td class="language_level language_item language_info" rowspan="2">А2</td>
+                                    <td class="language_certification_date language_item language_certification" rowspan="2">01.01.1970 00:00</td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="language">
+                        <table class="language_content">
+                            <tbody>
+                                <tr>
+                                    <td rowspan="3"><img src="../../assets/white.png" alt="logo" class="language_logo_round"></td>
+                                    <td class="language_name language_item language_info">ЯЗЫК</td>
+                                    <td class="language_certification_title language_item language_certification">Сертификат выдан:</td>
+                                    <td class="language_details" rowspan="3"><button class="see_details_btn">Подробнее >></button></td>
+                                </tr>
+                                <tr>
+                                    <td class="language_level language_item language_info" rowspan="2">А2</td>
+                                    <td class="language_certification_date language_item language_certification" rowspan="2">01.01.1970 00:00</td>
+                                </tr>
+                                <tr></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="languages_footer">
+                    <button class="see_all_btn">ПОСМОТРЕТЬ ВСЕ</button>
+                </div>
+            </div>
+        </div>
+        <div class="user_block block_friendlist">
+            <div class="block_content">
+                <h1>Друзья:</h1>
+                <div class="separator"></div>
+                <div class="friends">
+                    <div class="friend">
+                        <div class="friend_content">
+                            <img src="../../assets/white.png" alt="logo" class="friend_avatar">
+                            <div class="friend_username">%usernameusername%</div>
+                        </div>
+                    </div>
+                    <div class="friend">
+                        <div class="friend_content">
+                            <img src="../../assets/white.png" alt="logo" class="friend_avatar">
+                            <div class="friend_username">%usernameusername%</div>
+                        </div>
+                    </div>
+                    <div class="friend">
+                        <div class="friend_content">
+                            <img src="../../assets/white.png" alt="logo" class="friend_avatar">
+                            <div class="friend_username">%usernameusername%</div>
+                        </div>
+                    </div>
+                    <div class="friends_footer">
+                        <button class="see_all_btn">ВСЕ ДРУЗЬЯ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
