@@ -1,0 +1,172 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,600;0,800;1,300;1,400;1,600;1,800&display=swap');
+
+* {
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    background-color: #ebfaf8;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Search bar */
+
+.search_bar {
+    height: 40px;
+    width: 100%;
+    padding: 0 10% 0 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+input {
+    border: none;
+    padding-left: 8px;
+}
+
+.search_bar input {
+    width: 20%;
+    height: 100%;
+}
+
+.search_bar button {
+    border: none;
+}
+
+    .search_bar button img {
+        width: 40px;
+        height: 100%;
+    }
+
+/* Article contents */
+
+.articles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 10% 0 10%;
+    width: 100%;
+}
+
+.article {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 60%;
+    margin-bottom: 36px;
+}
+
+.padding {
+    padding: 0 10px 0 10px;
+}
+
+.article_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.article_author {
+    padding-left: 8px;
+    color: #305252;
+    font-weight: 500;
+    font-size: 22px;
+}
+
+.article_authorPFP {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.article_info {
+    color: #305252;
+    font-weight: 300;
+}
+
+
+.cover {
+    width: 100%;
+    height: 300px;
+}
+
+.article_title {
+    color: #373e40;
+    font-weight: bold;
+    font-size: 28px;
+    margin: 8px 0 8px 0;
+}
+
+.article_description {
+    font-size: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.article_footer {
+    padding-top: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.article_reactions {
+    display: flex;
+}
+
+.reaction {
+    display: flex;
+    align-items: center;
+    padding-right: 16px;
+    font-weight: bold;
+}
+
+    .reaction img {
+        height: 20px;
+        width: 20px;
+    }
+
+    .reaction span {
+        color: #305252;
+        padding-left: 4px;
+    }
+
+.article_expand {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    appearance: none;
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 16px 32px;
+    border-radius: 8px;
+    margin: 0 15px;
+    transition: .1s;
+    background-color: #305252;
+    box-shadow: inset 0 -8px 0 0 #223d3d;
+}
+
+    .article_expand:hover {
+        color: #fff;
+        box-shadow: inset 0 -6px 0 0 rgba(0,0,0,0.2);
+    }
+
+    .article_expand:active {
+        box-shadow: inset 0 -1px 0 0 rgba(0,0,0,0.2);
+        text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+    }

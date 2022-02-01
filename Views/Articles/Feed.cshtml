@@ -6,48 +6,69 @@
     <title>Article section</title>
     <link rel="stylesheet" href="../../css/articles/articles.css" asp-append-version="true" />
     @await Html.PartialAsync("_CssHeaderPartial")
+    <link rel="stylesheet" href="../../css/articles/feed.css" asp-append-version="true" />
 </head>
 <body>
     @await Html.PartialAsync("_HeaderPartial")
-    @Html.ActionLink("УПРАВЛЕНИЕ", "Pendings")
-    <button id="new_article" class="new_article btn" onclick="@($"window.location.href='{Url.Action("New", "Articles")}';")">
-        <img class="img_btn_inner" src="~/assets/chat.png">
-    </button>
-
     <div class="search_bar">
-        <input id="search_language" value="ЯЗЫК:" /> <!--->Searches by language<--->
-        <input id="search_level" value="УРОВЕНЬ" /> <!--->Searches by level<--->
-        <input id="search_author" value="АВТОР:"/> <!--->Searches by User<--->
-        <input id="search_tags" value="ТЭГИ:" /> <!--->Searches by tags<--->
-        <input id="search_keywords" value="СЛОВА:" /> <!--->Searches by words in title and description<--->
-        <input type="submit" value="ПОИСК" onclick="get_filtered_articles()"/>
+        <input id="search_language" placeholder="ЯЗЫК:" />
+        <input id="search_level" placeholder="УРОВЕНЬ:" />
+        <input id="search_author" placeholder="АВТОР:" />
+        <input id="search_keywords" placeholder="СЛОВА:" />
+        <button style="cursor: pointer;"><img src="assets/white.png" class="search_btn" /></button>
     </div>
 
-    <div class="articles">
-        @foreach (PublishedArticle item in Model)
-        {
-            <div class="article">
-                <div class="article__author">
-                    <img src="@item.AuthorAvatarURL" alt="authorLogo" class="article__author__logo">
-                    <div class="article__author__nickname">@item.AuthorUsername</div>
-                    <span class="article__creation__date">@item.CreationDate</span>
+    @Html.ActionLink("УПРАВЛЕНИЕ", "Pendings")
+
+<div class="articles">
+    @foreach (PublishedArticle item in Model)
+    {
+    <div class="article">
+        <div class="article_header padding">
+            <a href="profile">
+                <div style="display: flex;align-items: center;">
+                    <img src="@item.AuthorAvatarURL" class="article_authorPFP">
+                    <div class="article_author">@item.AuthorUsername</div>
                 </div>
-                <div class="article__title">@item.Title</div>
-                <div class="article__tags">
-                    <div class="article__tags__tag language">@item.Language</div>
-                    <div class="article__tags__tag tags">@item.Tags</div>
-                    <div class="article__tags__tag level">@item.Level</div>
+            </a>
+            <a href="~/Articles/Article?id=@item.ArticleID"><div class="article_info">@item.Level, @item.Language. @item.CreationDate</div></a>
+        </div>
+
+        <a href="~/Articles/Article?id=@item.ArticleID"><h3 class="article_title padding">@item.Title</h3></a>
+
+        <div class="article_cover">
+            <img src="@item.ThumbnailURL" alt="cover" class="cover">
+        </div>
+
+        <div class="article_description padding">@item.Description</div>
+
+        <div class="article_footer padding">
+            <div class="article_reactions">
+                <div class="reaction">
+                    <img src="assets/white.png" alt="Rating" class="reaction_img"><span>+53</span>
                 </div>
-                <div class="article__content">
-                    <img src="@item.ThumbnailURL" alt="articleThumbnail" class="article__img__Thumbnail">
-                    <div class="article__CutText">@item.Description</div>
-                    @Html.ActionLink("Читать далее", "Article", "Articles", new { id = item.ArticleID }, null)
+                <div class="reaction">
+                    <img src="assets/white.png" alt="Views" class="reaction_img"><span>201</span>
+                </div>
+                <div class="reaction">
+                    <img src="assets/white.png" alt="Comments" class="reaction_img"><span>14</span>
+                </div>
+                <div class="reaction">
+                    <img src="assets/white.png" alt="Bookmarks" class="reaction_img"><span>2</span>
                 </div>
             </div>
-        }
+            <div><button class="article_expand" onclick="@($"window.location.href='{Url.Action("Article", "Articles", new { id = item.ArticleID })}';")">Read more...</button></div>
+        </div>
     </div>
+    }
+</div>
+<button id="new_article" class="new_article btn" onclick="@($"window.location.href='{Url.Action("New", "Articles")}';")">
+    <img class="img_btn_inner" src="~/assets/chat.png">
+</button>
+</body>
+</html>
 
-    <script type="text/javascript">
+@*<script type="text/javascript">
         function get_filtered_articles() {
             var search_language = document.getElementById("search_language").value;
             var search_level = document.getElementById("search_level").value;
@@ -71,6 +92,4 @@
                 }
             });
         }
-    </script>
-</body>
-</html>
+    </script>*@
