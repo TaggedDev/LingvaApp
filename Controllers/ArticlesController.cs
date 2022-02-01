@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using LingvaApp.ViewModels;
 
 namespace LingvaApp.Controllers
 {
@@ -39,7 +40,7 @@ namespace LingvaApp.Controllers
         [Route("Articles/")]
         public IActionResult Feed()
         {
-            List<PublishedArticle> articles = _dbContext.PublishedArticles.ToList();
+            List<PublishedArticle> articles = _dbContext.PublishedArticles.Take(10).ToList();
             return View(articles);
         }
 
@@ -115,6 +116,7 @@ namespace LingvaApp.Controllers
                     }
                     model.CreationDate = DateTime.Now;
                     model.AuthorID = user.Id;
+                    model.AuthorUsername = user.UserName;
                     model.AuthorAvatarURL = user.AvatarURL;
                     await _dbContext.PendingArticles.AddAsync(model);
                     await _dbContext.SaveChangesAsync();
@@ -152,9 +154,42 @@ namespace LingvaApp.Controllers
             return new JsonResult("");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        public IActionResult GetUploadedImages(int id)
+        { 
+            List<UploadedImage> images = _dbContext.UploadedImages.Where(x => x.OwnerID == _userManager.GetUserId(User)).ToList();
+            //List<UploadedImageViewModel> imagesVM = Convert(images);
+                return new JsonResult(images);
+
+            /*List<UploadedImageViewModel> Convert(List<UploadedImage> dbImages) 
+            {
+                List<UploadedImageViewModel> result = new List<UploadedImageViewModel>();
+                byte[] imageData = null;
+                foreach (var each in dbImages)
+                {
+                    using (var binaryReader = new BinaryReader(each.Image.OpenReadStream() Open .Image.))
+                    {
+                        imageData = binaryReader.ReadBytes((int)model.Image.Length);
+                    }
+                    image.Image = imageData;
+                    image.CreationDate = DateTime.Now;
+                }
+                return result;
+            }*/
+        }
+
+
         public IActionResult ReturnFilteredArticles(string language, string level, string author, string tags, string keywords)
         {
             List<PublishedArticle> result = _dbContext.PublishedArticles.Where(m => m.Level == "A2").ToList();
+            return new JsonResult(result);
+        }
+
+        public IActionResult GetImagesLinks()
+        {
+            string result = _dbContext.UploadedImages.Where(x => x.OwnerID == _userManager.GetUserAsync(User).Result.Id).ToString();
             return new JsonResult(result);
         }
 
