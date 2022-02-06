@@ -1,19 +1,143 @@
 ﻿@model LingvaApp.Models.PublishedArticle
-@{Layout = null;} 
+@{ Layout = null; } 
 
 <html>
 <head>
     <title>@Model.Title</title>
+    @await Html.PartialAsync("_CssHeaderPartial")
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/articles/article.css" asp-append-version="true" />
 </head>
 <body>
-    @Model.AuthorID - @Model.ArticleID
-    <h1>@Model.Title</h1>
-    <img src="~/assets/library.jpg" style="width:100%;height:100px;margin-bottom:40px;"/>
-    @Html.Raw(Model.Content)
-    @Model.Language
-    @Model.Level
-    @Model.CreationDate
-    @Model.Rating
-    @Model.Tags
+    @await Html.PartialAsync("_HeaderPartial")
+    <div class="container">
+        <div class="article_content inner">
+
+            <header class="article_header">
+                <div class="article_author">
+                    <img src="@Model.AuthorAvatarURL" alt="pfp" class="author_avatar">
+                    <span class="author_name">@Model.AuthorUsername</span>
+                </div>
+                <div class="article_date">Today 18:46</div>
+            </header>
+
+            <h1 class="title">@Model.Title</h1>
+
+            @Html.Raw(Model.Content)
+
+            @*Fillers*@
+            <footer class="article_footer">
+                <div class="reactions">
+                    <div class="reaction r_rating">
+                        <img src="assets/black.png">
+                        <span>+75</span>
+                        <img src="assets/black.png">
+                    </div>
+                    <div class="reaction r_comments">
+                        <img src="assets/black.png"><span>2</span>
+                    </div>
+                    <div class="reaction r_bookmarks">
+                        <img src="assets/black.png"><span>5</span>
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+        <div class="usercard inner">
+            <div class="author">
+                <img src="assets/black.png" alt="pfp" class="author_avatar">
+                <span class="author_name">@Model.AuthorUsername</span>
+            </div>
+            <div class="about">User biography, for example he is learning math at Harvard university and learns japaneese qwertyuio</div>
+            <div class="follow"><button>FOLLOW</button></div>
+        </div>
+        <div class="comments inner">
+            <div class="comment">
+                <header class="comment_header">
+                    <div class="comment_author">
+                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <span class="comment_name">Author Username</span>
+                    </div>
+                    <div class="comment_date">Today 18:46</div>
+                </header>
+                <div class="comment_content">
+                    <a href="index.html" class="mention">Username</a>, Lorem ipsum dolor sit amet consectetur adipisicing elit. At ipsum culpa totam maxime earum nemo, alias quaerat eos mollitia aperiam sed itaque expedita dolorem cumque? Odit ullam officia reprehenderit inventore!
+                    Aperiam sint sequi doloremque explicabo, omnis at ipsa et sed blanditiis quae consequuntur commodi necessitatibus exercitationem numquam delectus earum quo dolorem. Doloremque pariatur recusandae eveniet ratione veniam cum commodi accusantium.
+                    Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
+                </div>
+                <div class="comment_footer">
+                    <div class="rating">+3</div>
+                    <div class="answer_link"><button>Ответить</button></div>
+                </div>
+            </div>
+            <div class="comment">
+                <header class="comment_header">
+                    <div class="comment_author">
+                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <span class="comment_name">Author Username</span>
+                    </div>
+                    <div class="comment_date">Today 18:46</div>
+                </header>
+                <div class="comment_content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At ipsum culpa totam maxime earum nemo, alias quaerat eos mollitia aperiam sed itaque expedita dolorem cumque? Odit ullam officia reprehenderit inventore!
+                    Aperiam sint sequi doloremque explicabo, omnis at ipsa et sed blanditiis quae consequuntur commodi necessitatibus exercitationem numquam delectus earum quo dolorem. Doloremque pariatur recusandae eveniet ratione veniam cum commodi accusantium.
+                    Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
+                </div>
+                <div class="comment_footer">
+                    <div class="rating">+3</div>
+                    <div class="answer_link"><button>Ответить</button></div>
+                </div>
+            </div>
+            <div class="comment answer">
+                <header class="comment_header">
+                    <div class="comment_author">
+                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <span class="comment_name">Author Username</span>
+                    </div>
+                    <div class="comment_date">Today 18:46</div>
+                </header>
+                <div class="comment_content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At ipsum culpa totam maxime earum nemo, alias quaerat eos mollitia aperiam sed itaque expedita dolorem cumque? Odit ullam officia reprehenderit inventore!
+                    Aperiam sint sequi doloremque explicabo, omnis at ipsa et sed blanditiis quae consequuntur commodi necessitatibus exercitationem numquam delectus earum quo dolorem. Doloremque pariatur recusandae eveniet ratione veniam cum commodi accusantium.
+                    Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
+                </div>
+                <div class="comment_footer">
+                    <div class="rating">+3</div>
+                    <div class="answer_link"><button>Ответить</button></div>
+                </div>
+            </div>
+            <div class="comment answer">
+                <header class="comment_header">
+                    <div class="comment_author">
+                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <span class="comment_name">Author Username</span>
+                    </div>
+                    <div class="comment_date">Today 18:46</div>
+                </header>
+                <div class="comment_content">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. At ipsum culpa totam maxime earum nemo, alias quaerat eos mollitia aperiam sed itaque expedita dolorem cumque? Odit ullam officia reprehenderit inventore!
+                    Aperiam sint sequi doloremque explicabo, omnis at ipsa et sed blanditiis quae consequuntur commodi necessitatibus exercitationem numquam delectus earum quo dolorem. Doloremque pariatur recusandae eveniet ratione veniam cum commodi accusantium.
+                    Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
+                </div>
+                <div class="comment_footer">
+                    <div class="rating">+3</div>
+                    <div class="answer_link"><button>Ответить</button></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    @*
+        @Model.AuthorID - @Model.ArticleID
+        <h1>@Model.Title</h1>
+        <img src="~/assets/library.jpg" style="width:100%;height:100px;margin-bottom:40px;" />
+        @Html.Raw(Model.Content)
+        @Model.Language
+        @Model.Level
+        @Model.CreationDate
+        @Model.Rating
+        @Model.Tags*@
 </body>
 </html>
