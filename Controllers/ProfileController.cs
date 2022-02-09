@@ -2,8 +2,6 @@
 using LingvaApp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace LingvaApp.Controllers
 {
@@ -18,9 +16,10 @@ namespace LingvaApp.Controllers
             _dbContext = context;
         }
 
-        public IActionResult Index()
+        public async System.Threading.Tasks.Task<IActionResult> Index(string name)
         {
-            return View();
+            ApplicationUser user = await _userManager.FindByNameAsync(name);
+            return View(user);
         }
     }
 }
