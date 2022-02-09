@@ -1,4 +1,5 @@
-﻿using LingvaApp.ViewModels;
+﻿using LingvaApp.Models;
+using LingvaApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -7,10 +8,10 @@ namespace LingvaApp.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -29,7 +30,7 @@ namespace LingvaApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                IdentityUser user = new IdentityUser { Email = model.Email, UserName = model.UserName };
+                ApplicationUser user = new ApplicationUser { Email = model.Email, UserName = model.UserName };
                 // добавляем пользователя
                 string errorMessage = string.Empty;
                 var result = await _userManager.CreateAsync(user, model.Password);
