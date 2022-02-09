@@ -12,7 +12,7 @@
             @{
                 if (User.Identity.IsAuthenticated)
                 {
-                    <a class="navbar__item__profile" href="~/Profile">
+                    <a class="navbar__item__profile" href="~/Profile?name=@User.Identity.Name">
                         <img class="navbar__profile__avatar" src="../../assets/gramm.png" alt="pfp">
                         <span class="navbar__profile__username">@User.Identity.Name</span>
                     </a>
