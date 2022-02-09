@@ -39,7 +39,7 @@ namespace LingvaApp.Controllers
         [Route("Articles/")]
         public IActionResult Feed()
         {
-            List<PublishedArticle> articles = _dbContext.PublishedArticles.ToList();
+            List<PublishedArticle> articles = _dbContext.PublishedArticles.Take(5).ToList();
             return View(articles);
         }
 
@@ -152,10 +152,32 @@ namespace LingvaApp.Controllers
             return new JsonResult("");
         }
 
-        public IActionResult ReturnFilteredArticles(string language, string level, string author, string tags, string keywords)
+        public IActionResult ReturnFiltersResult(string lang, string level, string author, string tags)
         {
-            List<PublishedArticle> result = _dbContext.PublishedArticles.Where(m => m.Level == "A2").ToList();
-            return new JsonResult(result);
+            IEnumerable<PublishedArticle> result = _dbContext.PublishedArticles;
+
+            if (!string.IsNullOrWhiteSpace(lang))
+                result = result.Where(x => x.Language == lang);
+
+            if (!string.IsNullOrWhiteSpace(level))
+                result = result.Where(x => x.Level == level);
+
+            return PartialView("_FilteredArticles", result.Take(5).ToList());
+        }
+
+        public IActionResult ReturnBottomArticles(string lang, string level, string author, string tags, int index)
+        {
+            IEnumerable<PublishedArticle> result = _dbContext.PublishedArticles;
+
+            if (!string.IsNullOrWhiteSpace(lang))
+                result = result.Where(x => x.Language == lang);
+
+            if (!string.IsNullOrWhiteSpace(level))
+                result = result.Where(x => x.Level == level);
+
+            var pass = result.Skip(5 * index).Take(5).ToList();
+
+            return PartialView("_BottomArticles", pass);
         }
 
         /* == BUTTON HANLDERS END == */
