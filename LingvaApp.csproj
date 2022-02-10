@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\files\ArticleThumbnails\**" />
+    <Content Remove="wwwroot\files\ArticleThumbnails\**" />
+    <EmbeddedResource Remove="wwwroot\files\ArticleThumbnails\**" />
+    <None Remove="wwwroot\files\ArticleThumbnails\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Web.Optimization" Version="1.1.3" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.22" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
@@ -27,11 +34,6 @@
     <None Include="wwwroot\lib\jquery.slim.min.map" />
     <None Include="wwwroot\lib\jquery.unobtrusive-ajax.js" />
     <None Include="wwwroot\lib\jquery.unobtrusive-ajax.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\files\ArticleThumbnails\" />
-    <Folder Include="wwwroot\files\UserAvatars\" />
   </ItemGroup>
 
 </Project>
