@@ -36,15 +36,44 @@ h1 {
     height: 22vh;
 }
 
+.top_img {
+    position: relative;
+    cursor: pointer;
+}
+
+.top_img:hover {
+    filter: brightness(90%);
+    transition: .1s filter linear;
+}
+
+.img_input {
+    display: none;
+    visibility: hidden;
+}
+
 .top_avatar {
     background-color: white;
+    position: absolute;
     border-radius: 50%;
+    margin: auto;
     height: 260px;
     width: 260px;
-    position: absolute;
     bottom: -130px;
     left: 140px;
-    margin: auto;
+}
+
+.top_avatar ~ .hover_image {
+    visibility: hidden;
+}
+
+.top_avatar:hover ~ .hover_image {
+    visibility: visible;
+}
+
+.hover_image {
+    position: absolute;
+    left: 248px;
+    bottom: -24px;
 }
 
 .container {

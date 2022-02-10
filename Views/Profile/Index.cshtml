@@ -1,6 +1,7 @@
 ﻿@model LingvaApp.Models.ApplicationUser
 @{ 
     Layout = null;
+    string bannersURL = "../../css/files/UserResources/";
 }
 
 <!DOCTYPE html>
@@ -24,8 +25,14 @@
         @if (User.Identity.Name == Model.UserName)
         {
             <div class="user_sources owner">
-                <img src="@Model.BannerURL" alt="banner" class="top_banner">
-                <img src="@Model.AvatarURL" alt="logo" class="top_avatar">
+                <label for="banner"><img src="~/files/UserResources/@Model.BannerURL" alt="banner" class="top_banner top_img"></label>
+                <input type="file" id="banner" name="name" value="" class="banner_input img_input" onchange="onBannerUpload(this.value)"/>
+
+                <label for="avatar">
+                    <img src="/files/UserResources/@Model.AvatarURL" alt="logo" class="top_avatar top_img">
+                    <img src="/files/System/camera.png" alt="cam" class="hover_image">
+                </label>
+                <input type="file" id="avatar" name="name" value="" class="avatar_input img_input" onchange="onAvatarUpload(this.value)"/>
             </div>
 
             <div class="container">
@@ -146,9 +153,9 @@
         }
         else
         {
-            <div class="user_sources">
-                <img src="@Model.BannerURL" alt="banner" class="top_banner">
-                <img src="@Model.AvatarURL" alt="logo" class="top_avatar">
+            <div class="user_sources owner">
+                <img src="~/files/UserResources/@Model.BannerURL" alt="banner" class="top_banner">
+                <img src="/files/UserResources/@Model.AvatarURL" alt="logo" class="top_avatar">
             </div>
 
             <div class="container">
@@ -264,5 +271,6 @@
             </div>
         }
     }
+    <script type="text/javascript" src="~/js/profile.js"></script>
 </body>
 </html>
