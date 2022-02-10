@@ -13,9 +13,9 @@
 </head>
 <body>
     <div class="auth">
-        <form method="post" class="window" asp-controller="Account" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
+        <form method="post" class="window" asp-controller="Profile" asp-action="Login" asp-route-returnUrl="@Model.ReturnUrl">
             <h2 class="main">Вход</h2>
-            <p class="enter_link">Впервые в Lingva? <a href="~/Account/Register">Создать аккаунт!</a></p>
+            <p class="enter_link">Впервые в Lingva? <a href="~/Profile/Register">Создать аккаунт!</a></p>
             <div asp-validation-summary="ModelOnly"></div>
             <div class="field">
                 <label class="field__label" asp-for="Email"></label><br />

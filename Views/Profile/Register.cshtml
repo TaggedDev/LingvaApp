@@ -13,10 +13,10 @@
 </head>
 <body>
     <div class="auth">
-        <form method="post" asp-controller="Account" asp-action="Register" class="window">
+        <form method="post" asp-controller="Profile" asp-action="Register" class="window">
             <div asp-validation-summary="ModelOnly"></div>
             <h1 class="main">РЕГИСТРАЦИЯ</h1>
-            <p class="enter_link">Уже есть аккаунт?<a href="~/Account/Login">Авторизоваться</a></p>
+            <p class="enter_link">Уже есть аккаунт?<a href="~/Profile/Login">Авторизоваться</a></p>
             <div class="field">
                 <label class="field__label" asp-for="Email"></label><br />
                 <input class="field__data" asp-for="Email" />
