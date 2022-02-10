@@ -12,14 +12,14 @@
             @{
                 if (User.Identity.IsAuthenticated)
                 {
-                    <a class="navbar__item__profile" href="~/Profile?name=@User.Identity.Name">
+                    <a class="navbar__item__profile" href="~/Profile/">
                         <img class="navbar__profile__avatar" src="../../assets/gramm.png" alt="pfp">
                         <span class="navbar__profile__username">@User.Identity.Name</span>
                     </a>
                 }
                 else
                 {
-                    <a class="navbar__item__profile" href="~/Account/Register">
+                    <a class="navbar__item__profile" href="~/Profile/Register">
                         <img class="navbar__profile__avatar" src="../../assets/gramm.png" alt="pfp">
                         <span class="navbar__profile__username">ПРОФИЛЬ</span>
                     </a>
