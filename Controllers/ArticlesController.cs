@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LingvaApp.Controllers
 {
@@ -52,7 +53,9 @@ namespace LingvaApp.Controllers
 
         /// <summary>
         /// Opens a list of all articles that are pending. Starting from oldest to newest
-        /// </summary
+        /// </summary>
+        
+        [Authorize(Roles = "Admin")]
         public IActionResult Pendings()
         {
             /*List<PendingArticle> pendings = _dbContext.PendingArticles.OrderBy(x => x.CreationDate).ToList();*/
@@ -139,7 +142,8 @@ namespace LingvaApp.Controllers
         /// </summary>
         public IActionResult OnApproveButtonPressed(int id)
         {
-            ApprovePendingArticle(id);
+            if (User.IsInRole("Admin"))
+                ApprovePendingArticle(id);
             return new JsonResult("");
         }
 
@@ -148,7 +152,8 @@ namespace LingvaApp.Controllers
         /// </summary>
         public IActionResult OnDeleteButtonPressed(int id)
         {
-            DeletePendingArticle(id);
+            if (User.IsInRole("Admin"))
+                DeletePendingArticle(id);
             return new JsonResult("");
         }
 
