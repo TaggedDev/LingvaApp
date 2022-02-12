@@ -1,11 +1,7 @@
+using LingvaApp.Models;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LingvaApp
 {
@@ -14,7 +10,8 @@ namespace LingvaApp
         public static void Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
-            //using var scope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            using var scope = host.Services.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            IdentityInitializer.InitializeAsync(scope.ServiceProvider);
             //SeedData.EnsureSeedData(scope.ServiceProvider);
             host.Run();
         }
