@@ -6,9 +6,7 @@ namespace LingvaApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Theme> Themes { get; set; }
-        public DbSet<Task> Tasks { get; set; }
-        public DbSet<Field> Field { get; set; }
+        public DbSet<Like> Likes { get; set; }
         public DbSet<PublishedArticle> PublishedArticles { get; set; }
         public DbSet<PendingArticle> PendingArticles { get; set; }
 

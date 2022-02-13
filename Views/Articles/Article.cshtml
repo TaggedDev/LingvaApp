@@ -6,10 +6,12 @@
     <title>@Model.Title</title>
     @await Html.PartialAsync("_CssHeaderPartial")
     <meta name="viewport" content="width=device-width" />
+    <script src="~/js/jquery-3.6.0.min.js"></script>
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
     <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
     <link rel="stylesheet" href="../../css/articles/article.css" asp-append-version="true" />
 </head>
-<body>
+<body onload="load_likes(@Model.ArticleID)">
     @await Html.PartialAsync("_HeaderPartial")
     <div class="container">
         <div class="article_content inner">
@@ -26,20 +28,18 @@
 
             @Html.Raw(Model.Content)
 
-            @*Fillers*@
             <footer class="article_footer">
                 <div class="reactions">
-                    <div class="reaction r_rating">
-                        <img src="assets/black.png">
-                        <span>+75</span>
-                        <img src="assets/black.png">
-                    </div>
-                    <div class="reaction r_comments">
-                        <img src="assets/black.png"><span>2</span>
+                    <div class="reaction r_like">
+                        <img src="assets/chat.png" id="like_icon" class="" onclick="add_like(@Model.ArticleID)">
+                        <span id="likes">0</span>
                     </div>
                     <div class="reaction r_bookmarks">
-                        <img src="assets/black.png"><span>5</span>
+                        <img src="assets/black.png">
                     </div>
+                </div>
+                <div>
+                    <img src="~/assets/report.png"/>
                 </div>
             </footer>
 
@@ -126,18 +126,8 @@
                 </div>
             </div>
         </div>
-
+    
+        <script src="~/js/load_reactions.js"></script>
     </div>
-
-    @*
-        @Model.AuthorID - @Model.ArticleID
-        <h1>@Model.Title</h1>
-        <img src="~/assets/library.jpg" style="width:100%;height:100px;margin-bottom:40px;" />
-        @Html.Raw(Model.Content)
-        @Model.Language
-        @Model.Level
-        @Model.CreationDate
-        @Model.Rating
-        @Model.Tags*@
 </body>
 </html>

@@ -157,6 +157,42 @@ namespace LingvaApp.Controllers
             return new JsonResult("");
         }
 
+        /// <summary>
+        /// Called on 'X' button in Pending list
+        /// </summary>
+        public IActionResult GetLikes(int id)
+        {
+            var postLikes = _dbContext.Likes.Where(m => m.ArticleID == id).ToList().Count;
+            return new JsonResult(postLikes);
+        }
+
+        public IActionResult IsLiked(int id)
+        {
+            var usersLike = _dbContext.Likes.Where(m => m.ArticleID == id).Where(m => m.AuthorUsername == User.Identity.Name).FirstOrDefault();
+            if (usersLike == null)
+                return new JsonResult(false);
+            return new JsonResult(true);
+
+        }
+
+        public async Task<IActionResult> RemoveLike(int id)
+        {
+            var usersLike = _dbContext.Likes.Where(m => m.ArticleID == id).Where(m => m.AuthorUsername == User.Identity.Name).FirstOrDefault();
+            if (usersLike != null)
+                _dbContext.Likes.Remove(usersLike);
+            await _dbContext.SaveChangesAsync();
+            return new JsonResult("");
+        }
+
+        public async Task<IActionResult> AddLike(int id)
+        {
+            var like = new Like() { ArticleID = id, AuthorUsername = User.Identity.Name };
+            _dbContext.Likes.Add(like);
+            await _dbContext.SaveChangesAsync();
+            return new JsonResult("");
+        }
+
+
         public IActionResult ReturnFiltersResult(string lang, string level, string author, string tags)
         {
             IEnumerable<PublishedArticle> result = _dbContext.PublishedArticles;
