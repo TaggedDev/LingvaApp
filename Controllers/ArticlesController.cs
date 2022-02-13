@@ -172,7 +172,6 @@ namespace LingvaApp.Controllers
             if (usersLike == null)
                 return new JsonResult(false);
             return new JsonResult(true);
-
         }
 
         public async Task<IActionResult> RemoveLike(int id)
@@ -191,7 +190,6 @@ namespace LingvaApp.Controllers
             await _dbContext.SaveChangesAsync();
             return new JsonResult("");
         }
-
 
         public IActionResult ReturnFiltersResult(string lang, string level, string author, string tags)
         {

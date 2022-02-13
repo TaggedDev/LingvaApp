@@ -23,8 +23,10 @@
                 id: article_id
             },
             success: function (data) {
-                if (data === true)
+                if (data === true) {
                     $("#like_icon").addClass("liked");
+                    $("#like_icon").attr("src", "/assets/like_green.svg");
+                }
             },
             error: function (data) {
                 console.log(data);
@@ -43,6 +45,7 @@ function add_like(article_id) {
             },
             success: function (data) {
                 $("#like_icon").removeClass("liked");
+                $("#like_icon").attr("src", "/assets/like_black.svg");
                 console.log("Success 2");
                 var likes_span = $("#likes");
                 var likes = parseInt(likes_span.text());
@@ -61,6 +64,7 @@ function add_like(article_id) {
             },
             success: function (data) {
                 $("#like_icon").addClass("liked");
+                $("#like_icon").attr("src", "/assets/like_green.svg");
                 console.log("Success 1");
                 var likes_span = $("#likes");
                 var likes = parseInt(likes_span.text());
