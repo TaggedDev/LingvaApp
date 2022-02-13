@@ -106,10 +106,10 @@ p {
     align-items: center;
 }
 
-    .reactions img {
-        vertical-align: middle;
-        cursor: pointer;
-    }
+.reactions img {
+    vertical-align: middle;
+    cursor: pointer;
+}
 
 .reaction {
     cursor: pointer;
