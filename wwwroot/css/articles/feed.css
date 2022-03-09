@@ -50,6 +50,16 @@ input {
 
 /* Article contents */
 
+.author_avatar {
+    width: 48px;
+    height: 48px;
+}
+
+.author_banner {
+    width: 100%;
+    height: 200px;
+}
+
 .articles {
     display: flex;
     flex-direction: column;

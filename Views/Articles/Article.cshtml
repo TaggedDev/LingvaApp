@@ -18,7 +18,15 @@
 
             <header class="article_header">
                 <div class="article_author">
-                    <img src="@Model.AuthorAvatarURL" alt="pfp" class="author_avatar">
+                    @if (string.IsNullOrWhiteSpace(Model.AuthorAvatarURL))
+                    {
+                        <img src="../../assts/default_avatar.png" alt="pfp" class="author_avatar">
+                    }
+                    else
+                    {
+                        <img src="@Model.AuthorAvatarURL" alt="pfp" class="author_avatar">
+                    }
+
                     <span class="author_name">@Model.AuthorUsername</span>
                 </div>
                 <div class="article_date">Today 18:46</div>
@@ -31,8 +39,16 @@
             <footer class="article_footer">
                 <div class="reactions">
                     <div class="reaction r_like">
-                        <img src="~/assets/like_black.svg" id="like_icon" class="" onclick="add_like(@Model.ArticleID)">
-                        <span id="likes">0</span>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <img src="~/assets/like_black.svg" id="like_icon" class="" onclick="add_like(@Model.ArticleID)">
+                            <span id="likes">0</span>
+                        }
+                        else
+                        {
+                            <img src="~/assets/like_black.svg" id="like_icon" class="" onclick="add_like(@Model.ArticleID)">
+                            <span id="likes">0</span>
+                        }
                     </div>
                 </div>
             </footer>
