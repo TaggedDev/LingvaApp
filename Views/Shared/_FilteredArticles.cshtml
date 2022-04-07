@@ -7,42 +7,47 @@ else
 {
     @foreach (PublishedArticle item in Model)
         {
-            <div class="article">
-                <div class="article_header padding">
-                    <a href="profile">
-                        <div style="display: flex;align-items: center;">
-                            <img src="@item.AuthorAvatarURL" class="article_authorPFP">
-                            <div class="article_author">@item.AuthorUsername</div>
-                        </div>
-                    </a>
-                    <a href="~/Articles/Article?id=@item.ArticleID"><div class="article_info">@item.Level, @item.Language. @item.CreationDate</div></a>
-                </div>
-
-                <a href="~/Articles/Article?id=@item.ArticleID"><h3 class="article_title padding">@item.Title</h3></a>
-
-                <div class="article_cover">
-                    <img src="@item.ThumbnailURL" alt="cover" class="cover">
-                </div>
-
-                <div class="article_description padding">@item.Description</div>
-
-                <div class="article_footer padding">
-                    <div class="article_reactions">
-                        <div class="reaction">
-                            <img src="assets/white.png" alt="Rating" class="reaction_img"><span>+53</span>
-                        </div>
-                        <div class="reaction">
-                            <img src="assets/white.png" alt="Views" class="reaction_img"><span>201</span>
-                        </div>
-                        <div class="reaction">
-                            <img src="assets/white.png" alt="Comments" class="reaction_img"><span>14</span>
-                        </div>
-                        <div class="reaction">
-                            <img src="assets/white.png" alt="Bookmarks" class="reaction_img"><span>2</span>
-                        </div>
-                    </div>
-                    <div><button class="article_expand" onclick="@($"window.location.href='{Url.Action("Article", "Articles", new { id = item.ArticleID })}';")">Read more...</button></div>
-                </div>
+<div class="article">
+    <div class="article_header padding">
+        <a href="profile">
+            <div style="display: flex;align-items: center;">
+                <img src="/assets//default_avatar.png" alt="pfp" class="author_avatar">
+                <div class="article_author">@item.AuthorUsername</div>
             </div>
+        </a>
+        <a href="~/Articles/Article?id=@item.ArticleID"><div class="article_info">@item.Level, @item.Language. @item.CreationDate</div></a>
+    </div>
+
+    <a href="~/Articles/Article?id=@item.ArticleID"><h3 class="article_title padding">@item.Title</h3></a>
+
+    @if (string.IsNullOrEmpty(item.ThumbnailURL))
+    {
+        <img src="/assets/default_banner.jpg" alt="cover" class="cover">
+    }
+    else
+    {
+        <img src="@item.ThumbnailURL" alt="cover" class="cover">
+    }
+
+    <div class="article_description padding">@item.Description</div>
+
+    <div class="article_footer padding">
+        <div class="article_reactions">
+            <div class="reaction">
+                <img src="assets/white.png" alt="Rating" class="reaction_img"><span>+53</span>
+            </div>
+            <div class="reaction">
+                <img src="assets/white.png" alt="Views" class="reaction_img"><span>201</span>
+            </div>
+            <div class="reaction">
+                <img src="assets/white.png" alt="Comments" class="reaction_img"><span>14</span>
+            </div>
+            <div class="reaction">
+                <img src="assets/white.png" alt="Bookmarks" class="reaction_img"><span>2</span>
+            </div>
+        </div>
+        <div><button class="article_expand" onclick="@($"window.location.href='{Url.Action("Article", "Articles", new { id = item.ArticleID })}';")">Read more...</button></div>
+    </div>
+</div>
         } 
 }

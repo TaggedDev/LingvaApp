@@ -17,7 +17,14 @@
             <a href="~/Articles/Article?id=@item.ArticleID"><h3 class="article_title padding">@item.Title</h3></a>
 
             <div class="article_cover">
-                <img src="/assets/default_banner.jpg" alt="cover" class="cover">
+                @if (string.IsNullOrEmpty(item.ThumbnailURL))
+                {
+                    <img src="/assets/default_banner.jpg" alt="cover" class="cover">
+                }
+                else
+                {
+                    <img src="@item.ThumbnailURL" alt="cover" class="cover">
+                }
             </div>
 
             <div class="article_description padding">@item.Description</div>
