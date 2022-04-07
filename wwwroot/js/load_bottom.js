@@ -2,7 +2,8 @@
 let inputs_values = ["", "", "", "", ""];
 window.addEventListener('scroll', () => {
     const scrollableSpace = document.documentElement.scrollHeight - window.innerHeight;
-    if (Math.ceil(scrollableSpace) === window.scrollY) {
+    if (Math.ceil(scrollableSpace) < window.scrollY) {
+        
         var inputs = document.querySelector("form").children;
         var i_lang = inputs[0].value;
         var i_level = inputs[1].value;
