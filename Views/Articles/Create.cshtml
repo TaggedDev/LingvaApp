@@ -42,9 +42,8 @@
     <div class="container">
         <form method="post" asp-controller="Articles" asp-action="CreatePost" enctype="multipart/form-data" class="form">
             <div asp-validation-summary="ModelOnly"></div>
-            <div class="title fullwidth">@Html.TextBoxFor(m => m.Title, new { @class = "fullwidth" })</div>
-            <div class="description fullwidth">@Html.TextAreaFor(m => m.Description, new { @class = "fullwidth" })</div>
-            
+            <div class="title fullwidth">Название статьи:@Html.TextBoxFor(m => m.Title, new { @class = "fullwidth" })</div>
+            <div class="description fullwidth">Описание статьи (>10 символов)@Html.TextAreaFor(m => m.Description, new { @class = "fullwidth" })</div>
             @Html.TextAreaFor(m => m.Content, new { @class = "mce" })
             <div class="ads fullwidth">
                 @Html.TextBoxFor(m => m.Tags, new { @class = "ads_component" })
