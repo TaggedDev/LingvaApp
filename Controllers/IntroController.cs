@@ -4,6 +4,6 @@ namespace LingvaApp.Controllers
 {
     public class IntroController : Controller
     {
-        public IActionResult Index() => View();
+        public IActionResult Index() => RedirectToAction("Feed", "Articles");
     }
 }
