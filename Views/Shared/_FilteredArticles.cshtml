@@ -34,16 +34,16 @@ else
     <div class="article_footer padding">
         <div class="article_reactions">
             <div class="reaction">
-                <img src="assets/white.png" alt="Rating" class="reaction_img"><span>+53</span>
+                <img src="../../assets/rating.svg" alt="Rating" class="reaction_img"><span>@item.Rating</span>
             </div>
             <div class="reaction">
-                <img src="assets/white.png" alt="Views" class="reaction_img"><span>201</span>
+                <img src="../../assets/views.svg" alt="Views" class="reaction_img"><span>0</span>
             </div>
             <div class="reaction">
-                <img src="assets/white.png" alt="Comments" class="reaction_img"><span>14</span>
+                <img src="../../assets/comments.svg" alt="Comments" class="reaction_img"><span>0</span>
             </div>
             <div class="reaction">
-                <img src="assets/white.png" alt="Bookmarks" class="reaction_img"><span>2</span>
+                <img src="../../assets/bookmarks.svg" alt="Bookmarks" class="reaction_img"><span>0</span>
             </div>
         </div>
         <div><button class="article_expand" onclick="@($"window.location.href='{Url.Action("Article", "Articles", new { id = item.ArticleID })}';")">Read more...</button></div>
