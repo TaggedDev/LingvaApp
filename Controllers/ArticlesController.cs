@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Authorization;
+using System.Threading;
 
 namespace LingvaApp.Controllers
 {
@@ -38,10 +39,12 @@ namespace LingvaApp.Controllers
         [Route("Articles/Feed")]
         [Route("Articles/Home")]
         [Route("Articles/")]
+        [Route("Articles/Index")]
         public IActionResult Feed()
         {
             List<PublishedArticle> articles = _dbContext.PublishedArticles.Take(5).ToList();
             return View(articles);
+            //return PartialView("_FilteredArticles", articles);
         }
 
         /// <summary>
@@ -118,6 +121,7 @@ namespace LingvaApp.Controllers
                     }
                     model.CreationDate = DateTime.Now;
                     model.AuthorID = user.Id;
+                    model.AuthorUsername = user.UserName;
                     model.AuthorAvatarURL = user.AvatarURL;
                     await _dbContext.PendingArticles.AddAsync(model);
                     await _dbContext.SaveChangesAsync();
@@ -140,20 +144,20 @@ namespace LingvaApp.Controllers
         /// <summary>
         /// Called on 'V' button in Pending list
         /// </summary>
-        public IActionResult OnApproveButtonPressed(int id)
+        public async Task<IActionResult> OnApproveButtonPressed(int id)
         {
             if (User.IsInRole("Admin"))
-                ApprovePendingArticle(id);
+                await ApprovePendingArticle(id);
             return new JsonResult("");
         }
 
         /// <summary>
         /// Called on 'X' button in Pending list
         /// </summary>
-        public IActionResult OnDeleteButtonPressed(int id)
+        public async Task<IActionResult> OnDeleteButtonPressed(int id)
         {
             if (User.IsInRole("Admin"))
-                DeletePendingArticle(id);
+                await DeletePendingArticle(id);
             return new JsonResult("");
         }
 
@@ -228,18 +232,20 @@ namespace LingvaApp.Controllers
         /// <summary>
         /// Moves item from Pending to published list
         /// </summary>
-        public async void ApprovePendingArticle(int id)
+        public async Task ApprovePendingArticle(int id)
         {
             var article = _dbContext.PendingArticles.First(m => m.ArticleID == id);
             _dbContext.PublishedArticles.Add(ConvertPendingToPublish(article));
+            await _dbContext.SaveChangesAsync();
             _dbContext.PendingArticles.Remove(article);
             await _dbContext.SaveChangesAsync();
+            Thread.Sleep(100);
         }
 
         /// <summary>
         /// Deletes pending article from pending table by id
         /// </summary>
-        public async void DeletePendingArticle(int id)
+        public async Task DeletePendingArticle(int id)
         {
             var article = _dbContext.PendingArticles.First(m => m.ArticleID == id);
             _dbContext.PendingArticles.Remove(article);
