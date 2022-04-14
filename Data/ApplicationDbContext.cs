@@ -6,7 +6,7 @@ namespace LingvaApp.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public DbSet<Like> Likes { get; set; }
+        public DbSet<Like> Likes { get; set; } //I made this comment to create a commit in order to participate. I will make normal changes later on
         public DbSet<PublishedArticle> PublishedArticles { get; set; }
         public DbSet<PendingArticle> PendingArticles { get; set; }
 
