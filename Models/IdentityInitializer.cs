@@ -23,7 +23,10 @@ namespace LingvaApp.Models
                 await roleManager.CreateAsync(new IdentityRole("User"));
 
             if (adminUser == null)
+            {
+                adminUser = new ApplicationUser { Email = "admin@gmail.com", UserName = "admin" };
                 await userManager.CreateAsync(adminUser, "123qwe");
+            }
             await userManager.AddToRoleAsync(adminUser, "Admin");
         }
     }
