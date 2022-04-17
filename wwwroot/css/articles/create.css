@@ -57,5 +57,10 @@
 }
 
 .error_message {
-    background-color:crimson;
+    
+    border: 4px dashed #B95252;
+    border-radius: 15px;
+    border-width: 2px;
+    margin: 5px;
+    padding-left: 5px;
 }
