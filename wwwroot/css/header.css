@@ -12,8 +12,8 @@
 }
 
 .navbar {
-    padding: 24px 32px 24px 32px;
-    background-color: #292929;
+    padding: 8px 32px 8px 32px;
+    background-color: #202547;
     font-size: 24px;
     text-transform: uppercase;
     display: flex;
@@ -21,12 +21,14 @@
     align-items: center;
 }
 
+.navbar_logo {
+    width: 122px;
+    height: 122px;
+}
+
 .navbar__item {
     position: relative;
-    display: inline-block;
     vertical-align: top;
-    color: #292929;
-    text-align: center;
     width: 30%;
 }
 
@@ -44,7 +46,14 @@
 
 .navbar__content {
     text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #fff;
+}
+
+.navbar__content .navbar__underline {
+    margin-left: 16px;
 }
 
 .navbar__item__profile {
@@ -55,27 +64,23 @@
     align-items: center;
 }
 
-.navbar__profile__avatar {
-    height: 64px;
-    width: 64px;
-    margin-right: 10px;
-    border-radius: 50%;
-    padding: 3px;
-    border: 2px solid #fff;
-}
-
 .navbar__profile__username {
+    padding: 15px 30px 15px 30px;
+    border: solid #fff 3px;
+    border-radius: 30px;
     color: #fff;
-    transition: color .2s ease;
+    transition: linear .2s;
 }
 
-.navbar__item__profile:hover .navbar__profile__username {
-    color: rgb(105, 183, 114);
+.navbar__profile__username:hover {
+    transition: linear .2s;
+    background: #fff;
+    color: #202547
 }
 
 .navbar__underline {
-    text-decoration: none; 
-    position: relative; 
+    text-decoration: none;
+    position: relative;
 }   
 
  .navbar__underline:after {
