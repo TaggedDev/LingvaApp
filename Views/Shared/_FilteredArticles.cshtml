@@ -7,47 +7,88 @@ else
 {
     @foreach (PublishedArticle item in Model)
         {
-<div class="article">
-    <div class="article_header padding">
-        <a href="profile">
-            <div style="display: flex;align-items: center;">
-                <img src="/assets//default_avatar.png" alt="pfp" class="author_avatar">
-                <div class="article_author">@item.AuthorUsername</div>
-            </div>
-        </a>
-        <a href="~/Articles/Article?id=@item.ArticleID"><div class="article_info">@item.Level, @item.Language. @item.CreationDate</div></a>
-    </div>
+            <div class="article">
+                <div class="article_header padding">
+                    <a href="profile">
+                        <div style="display: flex;align-items: center;">
+                            <img src="/assets//default_avatar.png" alt="pfp" class="author_avatar">
+                            @if (string.IsNullOrEmpty(item.AuthorUsername))
+                            {
+                                <div class="article_author">deleted user</div>
+                            }
+                            else
+                            {
+                                <div class="article_author">@item.AuthorUsername</div>
+                            }
 
-    <a href="~/Articles/Article?id=@item.ArticleID"><h3 class="article_title padding">@item.Title</h3></a>
+                        </div>
+                    </a>
+                    <a href="~/Articles/Article?id=@item.ArticleID"><div class="article_info">@item.CreationDate</div></a>
+                </div>
 
-    @if (string.IsNullOrEmpty(item.ThumbnailURL))
-    {
-        <img src="/assets/default_banner.jpg" alt="cover" class="cover">
-    }
-    else
-    {
-        <img src="@item.ThumbnailURL" alt="cover" class="cover">
-    }
+                <a href="~/Articles/Article?id=@item.ArticleID"><h3 class="article_title padding">@item.Title</h3></a>
 
-    <div class="article_description padding">@Html.Raw(item.Description)</div>
+                @if (string.IsNullOrEmpty(item.ThumbnailURL))
+                {
+                    <img src="/assets/default_banner.jpg" alt="cover" class="cover">
+                }
+                else
+                {
+                    <img src="@item.ThumbnailURL" alt="cover" class="cover">
+                }
 
-    <div class="article_footer padding">
-        <div class="article_reactions">
-            <div class="reaction">
-                <img src="../../assets/rating.svg" alt="Rating" class="reaction_img"><span>@item.Rating</span>
+                <div class="article_description padding">@Html.Raw(item.Description)</div>
+
+                <div class="article_footer padding">
+                    <button class="article_expand" onclick="@($"window.location.href='{Url.Action("Article", "Articles", new { id = item.ArticleID })}';")">Read more...</button>
+                </div>
+                <div class="article_basement">
+                    <div>
+                        <div class="article_reactions">
+                            <div class="reaction">
+                                <img src="../../assets/rating.svg" alt="Rating" class="reaction_img"><span>@item.Rating</span>
+                            </div>
+                            <div class="reaction">
+                                <img src="../../assets/views.svg" alt="Views" class="reaction_img"><span>0</span>
+                            </div>
+                            <div class="reaction">
+                                <img src="../../assets/comments.svg" alt="Comments" class="reaction_img"><span>0</span>
+                            </div>
+                            <div class="reaction">
+                                <img src="../../assets/bookmarks.svg" alt="Bookmarks" class="reaction_img"><span>0</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span>@item.Level</span>
+                        @switch (item.Language)
+                        {
+                            case "Английский":
+                                <img src="https://flagcdn.com/w40/gb.png"
+                                     width="40"
+                                     height="30"
+                                     alt="UK flag">
+                                break;
+                            case "Русский":
+                                <img src="https://flagcdn.com/w40/ru.png"
+                                     width="40"
+                                     height="30"
+                                     alt="RU flag">
+                                break;
+                            case "Немецкий":
+                                <img src="https://flagcdn.com/w40/de.png"
+                                     width="40"
+                                     height="30"
+                                     alt="DE flag">
+                                break;
+                            default:
+                                <img src="https://flagcdn.com/w40/un.png"
+                                     width="40"
+                                     alt="United Nations">
+                                break;
+                        }
+                    </div>
+                </div>
             </div>
-            <div class="reaction">
-                <img src="../../assets/views.svg" alt="Views" class="reaction_img"><span>0</span>
-            </div>
-            <div class="reaction">
-                <img src="../../assets/comments.svg" alt="Comments" class="reaction_img"><span>0</span>
-            </div>
-            <div class="reaction">
-                <img src="../../assets/bookmarks.svg" alt="Bookmarks" class="reaction_img"><span>0</span>
-            </div>
-        </div>
-        <div><button class="article_expand" onclick="@($"window.location.href='{Url.Action("Article", "Articles", new { id = item.ArticleID })}';")">Read more...</button></div>
-    </div>
-</div>
-        } 
+        }
 }

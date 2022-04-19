@@ -196,7 +196,7 @@ namespace LingvaApp.Controllers
             return new JsonResult("");
         }
 
-        public IActionResult ReturnFiltersResult(string lang, string level, string author, string tags)
+        public IActionResult ReturnFiltersResult(string lang, string level)
         {
             IEnumerable<PublishedArticle> result = _dbContext.PublishedArticles;
 
@@ -209,7 +209,7 @@ namespace LingvaApp.Controllers
             return PartialView("_FilteredArticles", result.Take(5).ToList());
         }
 
-        public IActionResult ReturnBottomArticles(string lang, string level, string author, string tags, int index)
+        public IActionResult ReturnBottomArticles(string lang, string level, int index)
         {
             IEnumerable<PublishedArticle> result = _dbContext.PublishedArticles;
 
