@@ -1,7 +1,3 @@
-/*
-    === HEADER START ===
-*/
-
 .header {
     width: 100%;
     position: sticky;
@@ -12,7 +8,7 @@
 }
 
 .navbar {
-    padding: 8px 32px 8px 32px;
+    padding: 4px 32px 4px 32px;
     background-color: #202547;
     font-size: 24px;
     text-transform: uppercase;
@@ -22,8 +18,8 @@
 }
 
 .navbar_logo {
-    width: 122px;
-    height: 122px;
+    width: 100px;
+    height: 100px;
 }
 
 .navbar__item {
@@ -32,23 +28,12 @@
     width: 30%;
 }
 
-.navbar__hub ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-}
-
-.navbar__hub ul li {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
 .navbar__content {
     text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 800;
     color: #fff;
 }
 
@@ -65,8 +50,9 @@
 }
 
 .navbar__profile__username {
+    font-weight: 800;
     padding: 15px 30px 15px 30px;
-    border: solid #fff 3px;
+    border: solid #fff 5px;
     border-radius: 30px;
     color: #fff;
     transition: linear .2s;
@@ -104,7 +90,3 @@
     width: 100%;
     background: #fff;
 }
-
-/*
-    === HEADER END ===
-*/
