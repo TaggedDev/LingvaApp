@@ -22,6 +22,7 @@
     <script type="text/javascript">
         tinymce.init({
             width: '100%',
+            height: '100%',
             selector: "textarea.mce",
             plugins: 'lists link advlist autolink autosave charmap autosave codesample image wordcount paste',
             toolbar: 'undo redo | bold italic underline strikethrough superscript subscript link image removeformat | h1 h2 h3 p | numlist bullist  | restoredraft wordcount',
@@ -45,31 +46,27 @@
     <div class="container">
         <form method="post" asp-controller="Articles" asp-action="CreatePost" enctype="multipart/form-data" class="form">
             <div asp-validation-summary="ModelOnly"></div>
-            <div class="title fullwidth">Название статьи:@Html.TextBoxFor(m => m.Title, new { @class = "fullwidth" })</div>
-            <div class="description fullwidth">Описание статьи (>10 символов)@Html.TextAreaFor(m => m.Description, new { @class = "fullwidth" })</div>
-            @Html.TextAreaFor(m => m.Content, new { @class = "mce" })
+            <div class="title fullwidth">Название статьи:</div>
+            @Html.TextBoxFor(m => m.Title, new { @class = "fullwidth textbox_title", @placeholder = "Введите название статьи" })
+            <div class="mce_textarea">
+                @Html.TextAreaFor(m => m.Content, new { @class = "mce" })
+                <div class="draft_message">Статья сохраняется в кеше браузера автоматически</div>
+            </div>
             <div class="ads fullwidth">
-                @Html.TextBoxFor(m => m.Tags, new { @class = "ads_component" })
                 @Html.DropDownListFor(m => m.Level, new SelectList(levels), "Выберите уровень:", new { @class = "ads_component" })
                 @Html.DropDownListFor(m => m.Language, new SelectList(langs), "Выберите язык:", new { @class = "ads_component" })
+                <div>
+                    @Html.TextBoxFor(m => m.ThumbnailPicture, new { type = "file" })
+                </div>
             </div>
-            <footer class="footer fullwidth">
-                @Html.TextBoxFor(m => m.ThumbnailPicture, new { type = "file" })
-                <input type="submit" value="Сохранить черновик" />
+            <footer>
+                <input class="submit_button fullwidth" type="submit" value="Отправить на модерацию" />
             </footer>
             <div class="errors">
                 @if (!Html.ViewData.ModelState.IsValid)
                 {
                     @Html.ValidationSummary(false, "", new { @class = "error_message" })
                 }
-
-                @*<div class="error_message" ><span asp-validation-for="Title" ></span></div>
-                    <div class="error_message" ><span asp-validation-for="Description"></span></div>
-                    <div class="error_message" ><span asp-validation-for="Content"></span></div>
-                    <div class="error_message" ><span asp-validation-for="Language"></span></div>
-                    <div class="error_message" ><span asp-validation-for="Level"></span></div>
-                    <div class="error_message" ><span asp-validation-for="Tags"></span></div>
-                    @errors*@
             </div>
         </form>
     </div>
