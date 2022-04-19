@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LingvaApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220309130149_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20220419072218_EasyOnRulesMigration")]
+    partial class EasyOnRulesMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -130,7 +130,6 @@ namespace LingvaApp.Migrations
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Language")
@@ -142,7 +141,6 @@ namespace LingvaApp.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Tags")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("ThumbnailURL")

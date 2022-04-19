@@ -129,7 +129,7 @@ namespace LingvaApp.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Вы не авторизованы");
+                    return RedirectToAction("Login", "Account");
                 }
             }
             return View("Create", model);
