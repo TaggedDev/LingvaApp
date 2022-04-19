@@ -10,17 +10,20 @@
 <html>
 <head>
     <title>New article</title>
+    <link rel="stylesheet" href="../../css/header.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
     <link rel="stylesheet" href="../../css/articles/create.css" asp-append-version="true">
     <script src="https://cdn.tiny.cloud/1/m6abbhtppjbwiaolzcuwvn4i0mtd4mf7rk8nfjp9541dqo0b/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <script src="~/js/jquery-3.6.0.min.js"></script>
     <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
 </head>
 <body>
+    @await Html.PartialAsync("_HeaderPartial")
     <script type="text/javascript">
         tinymce.init({
             width: '100%',
             selector: "textarea.mce",
-            plugins: 'lists link advlist autolink autosave charmap autosave codesample image wordcount paste', 
+            plugins: 'lists link advlist autolink autosave charmap autosave codesample image wordcount paste',
             toolbar: 'undo redo | bold italic underline strikethrough superscript subscript link image removeformat | h1 h2 h3 p | numlist bullist  | restoredraft wordcount',
             default_link_target: "_blank",
             paste_as_text: true,
@@ -49,19 +52,24 @@
                 @Html.TextBoxFor(m => m.Tags, new { @class = "ads_component" })
                 @Html.DropDownListFor(m => m.Level, new SelectList(levels), "Выберите уровень:", new { @class = "ads_component" })
                 @Html.DropDownListFor(m => m.Language, new SelectList(langs), "Выберите язык:", new { @class = "ads_component" })
-            </div>    
+            </div>
             <footer class="footer fullwidth">
                 @Html.TextBoxFor(m => m.ThumbnailPicture, new { type = "file" })
                 <input type="submit" value="Сохранить черновик" />
             </footer>
             <div class="errors">
-                <div class="error_message" ><span asp-validation-for="Title" ></span></div>
-                <div class="error_message" ><span asp-validation-for="Description"></span></div>
-                <div class="error_message" ><span asp-validation-for="Content"></span></div>
-                <div class="error_message" ><span asp-validation-for="Language"></span></div>
-                <div class="error_message" ><span asp-validation-for="Level"></span></div>
-                <div class="error_message" ><span asp-validation-for="Tags"></span></div>
-                @errors
+                @if (!Html.ViewData.ModelState.IsValid)
+                {
+                    @Html.ValidationSummary(false, "", new { @class = "error_message" })
+                }
+
+                @*<div class="error_message" ><span asp-validation-for="Title" ></span></div>
+                    <div class="error_message" ><span asp-validation-for="Description"></span></div>
+                    <div class="error_message" ><span asp-validation-for="Content"></span></div>
+                    <div class="error_message" ><span asp-validation-for="Language"></span></div>
+                    <div class="error_message" ><span asp-validation-for="Level"></span></div>
+                    <div class="error_message" ><span asp-validation-for="Tags"></span></div>
+                    @errors*@
             </div>
         </form>
     </div>
