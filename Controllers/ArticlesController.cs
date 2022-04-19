@@ -123,6 +123,7 @@ namespace LingvaApp.Controllers
                     model.AuthorID = user.Id;
                     model.AuthorUsername = user.UserName;
                     model.AuthorAvatarURL = user.AvatarURL;
+                    model.Description = model.Content.Split('\n')[0];
                     await _dbContext.PendingArticles.AddAsync(model);
                     await _dbContext.SaveChangesAsync();
                     return RedirectToAction("Feed");

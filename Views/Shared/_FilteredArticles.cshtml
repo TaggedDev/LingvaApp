@@ -29,7 +29,7 @@ else
         <img src="@item.ThumbnailURL" alt="cover" class="cover">
     }
 
-    <div class="article_description padding">@item.Description</div>
+    <div class="article_description padding">@Html.Raw(item.Description)</div>
 
     <div class="article_footer padding">
         <div class="article_reactions">
