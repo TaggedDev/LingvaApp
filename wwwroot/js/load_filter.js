@@ -10,7 +10,7 @@
             level: i_level
         },
         success: function (data) {
-            $("#articles").html(data);
+            $("#articles_content").html(data);
             
         },
         error: function (data) {

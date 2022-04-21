@@ -16,31 +16,37 @@
 </head>
 <body>
     @await Html.PartialAsync("_HeaderPartial")
-    <form id="search_bar" class="search_bar">
-        <select id="search_language">
-            <option value="">Любой язык</option>
-            <option value="Русский">Русский</option>
-            <option value="Английский">Английский</option>
-            <option value="Немецкий">Немецкий</option>
-        </select>
-        <select id="search_level">
-            <option value="">Любой уровень</option>
-            <option value="A1">A1</option>
-            <option value="A2">A2</option>
-            <option value="B1">B1</option>
-            <option value="B2">B2</option>
-            <option value="C1">C1</option>
-            <option value="C2">C2</option>
-        </select>
-        <button onclick="filter_articles()" type='button' style="cursor: pointer;"><img src="https://img.icons8.com/color/48/000000/search--v1.png" /></button>
-    </form>
-    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
-    {
-        @Html.ActionLink("УПРАВЛЕНИЕ", "Pendings")
-    }
-
+    
     <div id="articles" class="articles">
-        @await Html.PartialAsync("_FilteredArticles", Model) 
+        <div class="container">
+            <form id="search_bar" class="search_bar">
+                <select class="search_bar_item" id="search_language">
+                    <option value="">Любой язык</option>
+                    <option value="Русский">Русский</option>
+                    <option value="Английский">Английский</option>
+                    <option value="Немецкий">Немецкий</option>
+                </select>
+                <select class="search_bar_item" id="search_level">
+                    <option value="">Любой уровень</option>
+                    <option value="A1">A1</option>
+                    <option value="A2">A2</option>
+                    <option value="B1">B1</option>
+                    <option value="B2">B2</option>
+                    <option value="C1">C1</option>
+                    <option value="C2">C2</option>
+                </select>
+                <button class="search_bar_item search_btn" onclick="filter_articles()" type='button' style="cursor: pointer;"><img src="https://img.icons8.com/color/48/000000/search--v1.png" /></button>
+            </form>
+            @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+            {
+                <div class="admin_panel">
+                    @Html.ActionLink("УПРАВЛЕНИЕ", "Pendings")
+                </div>
+            }
+        </div>
+        <div class="articles_content">
+            @await Html.PartialAsync("_FilteredArticles", Model)
+        </div>
     </div>
     <button id="new_article" class="new_article btn" onclick="@($"window.location.href='{Url.Action("New", "Articles")}';")">
         <img class="img_btn_inner" src="https://img.icons8.com/fluency/48/000000/pencil.png" />
