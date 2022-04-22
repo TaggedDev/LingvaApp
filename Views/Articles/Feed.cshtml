@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Article section</title>
+    <title>CLOUDS: Статьи</title>
     <link rel="stylesheet" href="../../css/articles/articles.css" asp-append-version="true" />
     <link rel="stylesheet" href="../../css/header.css" asp-append-version="true">
     <link rel="stylesheet" href="../../css/articles/feed.css" asp-append-version="true" />
@@ -44,7 +44,7 @@
                 </div>
             }
         </div>
-        <div class="articles_content">
+        <div id="articles_content" class="articles_content">
             @await Html.PartialAsync("_FilteredArticles", Model)
         </div>
     </div>

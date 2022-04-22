@@ -15,22 +15,6 @@
     @await Html.PartialAsync("_HeaderPartial")
     <div class="container">
         <div class="article_content inner">
-
-            <header class="article_header">
-                <div class="article_author">
-                    @if (string.IsNullOrWhiteSpace(Model.AuthorAvatarURL))
-                    {
-                        <img src="../../assts/default_avatar.png" alt="pfp" class="author_avatar">
-                    }
-                    else
-                    {
-                        <img src="@Model.AuthorAvatarURL" alt="pfp" class="author_avatar">
-                    }
-                    <span class="author_name">@Model.AuthorUsername</span>
-                </div>
-                <div class="article_date">@Model.CreationDate</div>
-            </header>
-
             <h1 class="title">@Model.Title</h1>
 
             @Html.Raw(Model.Content)
@@ -55,7 +39,7 @@
         </div>
         <div class="usercard inner">
             <div class="author">
-                <img src="assets/black.png" alt="pfp" class="author_avatar">
+                <img src="/assets//default_avatar.png" alt="pfp" class="author_avatar">
                 <span class="author_name">@Model.AuthorUsername</span>
             </div>
             <div class="about">User biography, for example he is learning math at Harvard university and learns japaneese qwertyuio</div>
@@ -65,7 +49,7 @@
             <div class="comment">
                 <header class="comment_header">
                     <div class="comment_author">
-                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <img src="/assets//default_avatar.png" alt="pfp" class="comment_avatar">
                         <span class="comment_name">Author Username</span>
                     </div>
                     <div class="comment_date">Today 18:46</div>
@@ -76,14 +60,13 @@
                     Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
                 </div>
                 <div class="comment_footer">
-                    <div class="rating">+3</div>
                     <div class="answer_link"><button>Ответить</button></div>
                 </div>
             </div>
             <div class="comment">
                 <header class="comment_header">
                     <div class="comment_author">
-                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <img src="/assets//default_avatar.png" alt="pfp" class="comment_avatar">
                         <span class="comment_name">Author Username</span>
                     </div>
                     <div class="comment_date">Today 18:46</div>
@@ -94,14 +77,13 @@
                     Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
                 </div>
                 <div class="comment_footer">
-                    <div class="rating">+3</div>
                     <div class="answer_link"><button>Ответить</button></div>
                 </div>
             </div>
             <div class="comment answer">
                 <header class="comment_header">
                     <div class="comment_author">
-                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <img src="/assets//default_avatar.png" alt="pfp" class="comment_avatar">
                         <span class="comment_name">Author Username</span>
                     </div>
                     <div class="comment_date">Today 18:46</div>
@@ -112,14 +94,13 @@
                     Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
                 </div>
                 <div class="comment_footer">
-                    <div class="rating">+3</div>
                     <div class="answer_link"><button>Ответить</button></div>
                 </div>
             </div>
             <div class="comment answer">
                 <header class="comment_header">
                     <div class="comment_author">
-                        <img src="assets/black.png" alt="pfp" class="comment_avatar">
+                        <img src="/assets//default_avatar.png" alt="pfp" class="comment_avatar">
                         <span class="comment_name">Author Username</span>
                     </div>
                     <div class="comment_date">Today 18:46</div>
@@ -130,7 +111,6 @@
                     Molestiae voluptates ea illum veritatis totam corporis, molestias debitis pariatur ab sunt ipsam quibusdam mollitia quidem consequatur voluptatibus cumque esse sapiente quo error. Maiores fugit dolorem distinctio necessitatibus pariatur blanditiis.
                 </div>
                 <div class="comment_footer">
-                    <div class="rating">+3</div>
                     <div class="answer_link"><button>Ответить</button></div>
                 </div>
             </div>

@@ -3,17 +3,24 @@
     Layout = null;
 }
 
+<head>
+    <title>Профиль</title>
+    <link rel="stylesheet" href="../../css/header.css" asp-append-version="true">
+    <link rel="stylesheet" href="../../css/base.css" asp-append-version="true">
+</head>
+<body>
+    @await Html.PartialAsync("_HeaderPartial")
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>@User.Identity.Name</p>
 
-@if (User.Identity.IsAuthenticated)
-{
-    <p>@User.Identity.Name</p>
-
-    <form method="post" asp-controller="Account" asp-action="Logout">
-        <input type="submit" value="Выход" />
-    </form>
-}
-else
-{
-    <a asp-controller="Account" asp-action="Login">Вход</a>
-    <a asp-controller="Account" asp-action="Register">Регистрация</a>
-}
+        <form method="post" asp-controller="Account" asp-action="Logout">
+            <input type="submit" value="Выход" />
+        </form>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="Login">Вход</a>
+        <a asp-controller="Account" asp-action="Register">Регистрация</a>
+    }
+</body>
